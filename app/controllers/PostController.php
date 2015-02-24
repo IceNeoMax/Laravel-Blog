@@ -9,8 +9,14 @@ class PostController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
-		return "All";
+		$post = Post::all()->toJson();
+        $count = Post::count();
+        echo $count;
+        return View::make("Post/indexPost",
+            [
+                'post'=>$post,
+                'count'=>$count,
+            ]);
 	}
 
 
@@ -22,7 +28,7 @@ class PostController extends \BaseController {
 	public function create()
 	{
 		//
-        return View::make('createPost');
+        return View::make('Post/createPost');
 	}
 
 
@@ -34,6 +40,15 @@ class PostController extends \BaseController {
 	public function store()
 	{
 		//
+        $title = Input::get('title');
+        $content= Input::get('content');
+        $author_id = 1;
+        $post = new Post();
+        $post->title=$title;
+        $post->content=$content;
+        $post->author_id = $author_id;
+        $post->save();
+        echo $title;
 	}
 
 

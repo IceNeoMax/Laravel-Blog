@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2015 at 02:46 PM
+-- Generation Time: Feb 24, 2015 at 03:01 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -49,9 +49,9 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `author_id` int(11) NOT NULL,
-  `tags` varchar(255) NOT NULL,
-  `category` varchar(255) NOT NULL,
-  `views` bigint(20) NOT NULL,
+  `tags` varchar(255) DEFAULT NULL,
+  `category` varchar(255) DEFAULT NULL,
+  `views` bigint(20) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`post_id`)
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`user_id`)
