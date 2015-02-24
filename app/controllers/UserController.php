@@ -1,24 +1,100 @@
 <?php
-class UserController extends Controller{
-	public function getDangNhap(){
-		return View::make('dang-nhap');
+
+class UserController extends \BaseController {
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		//
 	}
 
-	public function postDangNhap(){
-		echo "user: ".Input::get('username');
-		echo "<br> pass: ".Input::get('password');
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		//
 	}
 
-	public function getDetail($name1,$name2){
-		echo "string".$name1.'-'.$name2;
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		//
 	}
 
-	public function start(){
-		return View::make('hello');
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		//
 	}
-	// public function check(){
-	// 	if (!Session::has('user') 
-	// 		return Redirect::to('/');
-		
-	// }
+
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		//
+	}
+
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		//
+	}
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		//
+	}
+
+    /**
+     * Login to user
+     */
+    public function login()
+    {
+        $userName = Input::get('userName');
+        $password = Input::get('password');
+        if(!$userName)
+            return View::make('login');
+        if($userName=="admin"&&$password!=null)
+        {
+            return View::make('Theme/index');
+        }
+        else return "You cannot access!!!";
+    }
 }

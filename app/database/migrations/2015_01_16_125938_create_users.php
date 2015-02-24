@@ -13,10 +13,11 @@ class CreateUsers extends Migration {
 	public function up()
 	{
 		Schema::create("users",function($table){
-			$table->Increments("id");
+			$table->Increments("user_id");
 			$table->string("username");
 			$table->string("password");
-			$table->string("gmail");
+			$table->string("email");
+			$table->string("description");
 			$table->timestamps();
 		});
 	}

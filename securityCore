@@ -1,0 +1,1 @@
+cp -r security-core/* vendor/symfony/security-core/Symfony/Component/Security/Core/

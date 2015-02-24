@@ -13,6 +13,14 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('index');
 });
-
+Route::get('/login',function()
+{
+    return View::make('login');
+});
+Route::post('/login','UserController@login');
+//API for Post Controller
+Route::resource('post','PostController');
+//API for User Controller
+Route::resource('user','UserController');

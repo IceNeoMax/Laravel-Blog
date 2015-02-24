@@ -1,4 +1,5 @@
 <?php
-class User extends Eloquent{
-	public $table="users";
+use Illuminate\Database\Eloquent\Model;
+class User extends Model {
+	protected $table="users";
 }
