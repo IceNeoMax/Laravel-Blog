@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'mongodb',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -73,7 +73,14 @@ return array(
 			'prefix'   => '',
 			'schema'   => 'public',
 		),
-
+        'mongodb'=>array(
+            'driver'   => 'mongodb',
+            'host'     => 'localhost',
+            'port'     =>  27017,
+            'username' => 'admin',
+            'password' => 'admin',
+            'database' => 'meduza'
+        ),
 		'sqlsrv' => array(
 			'driver'   => 'sqlsrv',
 			'host'     => 'localhost',

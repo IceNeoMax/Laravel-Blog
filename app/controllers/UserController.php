@@ -1,6 +1,7 @@
 <?php
-
+define('defaultFolder','default');
 class UserController extends \BaseController {
+
 
 	/**
 	 * Display a listing of the resource.
@@ -21,6 +22,7 @@ class UserController extends \BaseController {
 	public function create()
 	{
 		//
+
 	}
 
 
@@ -31,7 +33,26 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		//create a folder
+
+        $userName = Input::get('userName');
+        $user = User::where('userName','=',$userName)->first();
+        if(isset($user)) return false;
+        //Ma hoa password truoc khi luu vao db
+        $password = Input::get('password');
+        $hashPassword = Hash::make($password);
+        $description = Inputt::get('description') or ("");
+        $email = Input::get('email');
+        //Luu thong tin
+        $user->userName = $userName;
+        $user->password = $hashPassword;
+        $user->description = $description;
+        $user->email = $email;
+        //$user->save();
+        //Tao thu muc dua theo ten cua userName
+        $folderName =  str_replace(" ","",$userName);
+        //$success = File::copyDirectory(defaultFolder,$folderName);
+        //return $success;
 	}
 
 
@@ -44,6 +65,7 @@ class UserController extends \BaseController {
 	public function show($id)
 	{
 		//
+        return User::all()->toJson();
 	}
 
 
@@ -56,6 +78,8 @@ class UserController extends \BaseController {
 	public function edit($id)
 	{
 		//
+        $user = User::find($id)->toJson();
+        return $user;
 	}
 
 

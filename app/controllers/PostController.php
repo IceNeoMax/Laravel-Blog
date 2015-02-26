@@ -9,13 +9,16 @@ class PostController extends \BaseController {
 	 */
 	public function index()
 	{
-		$post = Post::all()->toJson();
-        $count = Post::count();
-        echo $count;
+        //$post = Post::all()->toJson();
+        //$count = Post::count();
+        $demo = Demo::all();
+        $userName = 'NhuanTD';
         return View::make("Post/indexPost",
             [
-                'post'=>$post,
-                'count'=>$count,
+                //'post'=>$post,
+                //'count'=>$count,
+                'userName'=>$userName,
+                'demo'=>$demo,
             ]);
 	}
 
