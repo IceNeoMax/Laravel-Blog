@@ -65,7 +65,7 @@ class UserController extends \BaseController {
 	public function show($id)
 	{
 		//
-        return User::all()->toJson();
+        return User::all();
 	}
 
 
@@ -78,7 +78,7 @@ class UserController extends \BaseController {
 	public function edit($id)
 	{
 		//
-        $user = User::find($id)->toJson();
+        $user = User::find($id);
         return $user;
 	}
 

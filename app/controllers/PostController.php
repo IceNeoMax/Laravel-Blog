@@ -1,25 +1,27 @@
 <?php
-
 class PostController extends \BaseController {
-
-	/**
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
+
         //$post = Post::all()->toJson();
         //$count = Post::count();
-        $demo = Demo::all();
-        $userName = 'NhuanTD';
-        return View::make("Post/indexPost",
-            [
-                //'post'=>$post,
-                //'count'=>$count,
-                'userName'=>$userName,
-                'demo'=>$demo,
-            ]);
+//        $demo = $this->getPostByTag("smile");
+//        //$demo = $this->getPostByTag("love");
+//        $userName = 'NhuanTD';
+//        /*return View::make("Post/indexPost",
+//            [
+//                //'post'=>$post,
+//                //'count'=>$count,
+//                'userName'=>$userName,
+//                'demo'=>$demo,
+//            ]);*/
+//        return View::make('Post/createPost');
+        print_r(Post::getCommentsOfPost(1));
 	}
 
 
@@ -30,7 +32,7 @@ class PostController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+
         return View::make('Post/createPost');
 	}
 
@@ -42,16 +44,23 @@ class PostController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
-        $title = Input::get('title');
-        $content= Input::get('content');
-        $author_id = 1;
-        $post = new Post();
-        $post->title=$title;
-        $post->content=$content;
-        $post->author_id = $author_id;
-        $post->save();
-        echo $title;
+//
+//        $title = Input::get('title');
+//        $content= Input::get('content');
+//        $author_id = 1;
+//        $tags = array(
+//            "love","smile",
+//        );
+//
+//        $dt = new DateTime();
+//        $post = new Post();
+//        $post->title=$title;
+//        $post->content=$content;
+//        $post->author_id = $author_id;
+//        $post->tags = $tags;
+//        $post->post_id = 10;
+//        $post->save();
+//        echo $title;
 	}
 
 
@@ -101,6 +110,5 @@ class PostController extends \BaseController {
 	{
 		//
 	}
-
 
 }
