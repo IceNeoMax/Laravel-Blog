@@ -8,7 +8,7 @@ class PostController extends \BaseController {
 	public function index()
 	{
 
-        //$post = Post::all()->toJson();
+        $posts = Post::all();
         //$count = Post::count();
 //        $demo = $this->getPostByTag("smile");
 //        //$demo = $this->getPostByTag("love");
@@ -22,7 +22,8 @@ class PostController extends \BaseController {
 //            ]);*/
 //        return View::make('Post/createPost');
         //print_r(Post::getCommentsOfPost(1));
-        print_r(Post::countComment("54f86f11f7839ee808000029"));
+        //print_r(Post::countComment("54f86f11f7839ee808000029"));
+        return View::make('Post/indexPost',['posts'=>$posts]);
 	}
 
 
@@ -55,7 +56,6 @@ class PostController extends \BaseController {
         $post->author_id = Session::get('user_id');
         $post->tags = $tags;
 		$result = $post->save();
-//        echo $title;
 	}
 
 
@@ -68,6 +68,9 @@ class PostController extends \BaseController {
 	public function show($id)
 	{
 		//
+        $post = Post::where('_id',$id)->get();
+        //print_r($post);
+        return View::make("Post/post",["posts"=>$post]);
 	}
 
 

@@ -20,6 +20,7 @@ Route::get('/login',function()
     return View::make('login');
 });
 Route::post('/login','UserController@login');
+Route::get('post/index','PostController@index');
 //API for Post Controller
 Route::resource('post','PostController');
 //API for User Controller
