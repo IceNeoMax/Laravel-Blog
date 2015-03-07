@@ -24,12 +24,15 @@ class User extends \Jenssegers\Mongodb\Model {
     /**
      * Login to user
      */
-    public static function login($userName,$password)
+    public static function login($email,$password)
     {
-        $result = User::where('user_name',$userName)->where('password',$password)->get();
-        if(isset($result))
+        $result = User::where('email',$email)->where('password',$password)->take(1)->get();
+        if(count($result)!=0)
         {
-            //Luu session
+//            //Luu session
+         Session::put('user_id',$result[0]['_id']);
+         Session::put('user_name',$result[0]['user_name']);
+            //echo $result[0]['user_name'];
             return "Welcome";
         }
         else return "You cannot access!!!";

@@ -1,16 +1,23 @@
 <?php
-define('defaultFolder','default');
-class UserController extends \BaseController {
 
+class UserController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 *
+	 *tested
 	 * @return Response
 	 */
 	public function index()
 	{
 		//
+        $users= User::all();
+        //print_r($users);
+//        foreach($users as $user)
+//        {
+//            echo '<br>';
+//            echo $user['user_name'];
+//        }
+        return $users;
 	}
 
 
@@ -21,7 +28,8 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+
+		return $this->login();
 
 	}
 
@@ -33,6 +41,7 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
+
 		//create a folder
         $user = new User;
         $userName = Input::get('userName');
@@ -53,6 +62,7 @@ class UserController extends \BaseController {
         $folderName =  str_replace(" ","",$userName);
         //$success = File::copyDirectory(defaultFolder,$folderName);
         //return $success;
+
 	}
 
 
@@ -65,7 +75,8 @@ class UserController extends \BaseController {
 	public function show($id)
 	{
 		//
-        return User::all();
+        return User::where('_id',$id);
+
 	}
 
 
@@ -74,12 +85,11 @@ class UserController extends \BaseController {
 	 *
 	 * @param  int  $id
 	 * @return Response
+     * tested
 	 */
 	public function edit($id)
 	{
 		//
-        $user = User::find($id);
-        return $user;
 	}
 
 
@@ -92,6 +102,7 @@ class UserController extends \BaseController {
 	public function update($id)
 	{
 		//
+
 	}
 
 
@@ -100,17 +111,24 @@ class UserController extends \BaseController {
 	 *
 	 * @param  int  $id
 	 * @return Response
+     * tested
 	 */
 	public function destroy($id)
 	{
-		//
+        $user = User::where('_id',$id)->delete();
+        return $user;
 	}
+    /*
+     * Login to website
+     * tested
+     */
     public function login()
     {
-        $userName = Input::get('userName');
+        $email = Input::get('email');
         $password = Input::get('password');
+        //print_r($this->destroy('54faa3287fd3630f1a47bb09'));
         //print_r(User::checkValidEmail($userName));
-        return User::login($userName,$password);
+        return User::login($email,$password);
     }
 
 }

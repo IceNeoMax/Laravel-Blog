@@ -46,5 +46,13 @@ class Post extends \Jenssegers\Mongodb\Model
         ));
         $post = Post::where('post_id',$post_id)->update(array('comments'=>$comments));
     }
-
+    /*
+     * Count number of comments in the specific post
+     */
+    public static function countComment($post_id)
+    {
+        $post = Post::where('_id',$post_id)->get(array('comments'));
+        $count = count($post);
+        return $count;
+    }
 }

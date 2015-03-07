@@ -24,7 +24,7 @@
       <div class="modal-body">
           <form class="form col-md-12 center-block" method="post" action="<?php echo URL::to('/login');?>">
             <div class="form-group">
-              <input name="userName" type="text" class="form-control input-lg" placeholder="Email">
+              <input name="email" type="text" class="form-control input-lg" placeholder="Email">
             </div>
             <div class="form-group">
               <input name="password" type="password" class="form-control input-lg" placeholder="Password">

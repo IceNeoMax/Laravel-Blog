@@ -21,7 +21,8 @@ class PostController extends \BaseController {
 //                'demo'=>$demo,
 //            ]);*/
 //        return View::make('Post/createPost');
-        print_r(Post::getCommentsOfPost(1));
+        //print_r(Post::getCommentsOfPost(1));
+        print_r(Post::countComment("54f86f11f7839ee808000029"));
 	}
 
 
@@ -44,22 +45,16 @@ class PostController extends \BaseController {
 	 */
 	public function store()
 	{
-//
-//        $title = Input::get('title');
-//        $content= Input::get('content');
-//        $author_id = 1;
-//        $tags = array(
-//            "love","smile",
-//        );
-//
-//        $dt = new DateTime();
-//        $post = new Post();
-//        $post->title=$title;
-//        $post->content=$content;
-//        $post->author_id = $author_id;
-//        $post->tags = $tags;
-//        $post->post_id = 10;
-//        $post->save();
+        $title = Input::get('title');
+        $content= Input::get('content');
+        $author_id = Session::get('user_name');
+        $tags = explode(",",Input::get('tags'));
+        $post = new Post();
+        $post->title=$title;
+        $post->content=$content;
+        $post->author_id = Session::get('user_id');
+        $post->tags = $tags;
+		$result = $post->save();
 //        echo $title;
 	}
 
