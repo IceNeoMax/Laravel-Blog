@@ -34,15 +34,15 @@ class UserController extends \BaseController {
 	public function store()
 	{
 		//create a folder
-
+        $user = new User;
         $userName = Input::get('userName');
-        $user = User::where('userName','=',$userName)->first();
-        if(isset($user)) return false;
         //Ma hoa password truoc khi luu vao db
         $password = Input::get('password');
         $hashPassword = Hash::make($password);
-        $description = Inputt::get('description') or ("");
+        $description = Input::get('description') or ("");
         $email = Input::get('email');
+        $valid = User::checkValidEmail($email);
+        if(!$valid) return false;
         //Luu thong tin
         $user->userName = $userName;
         $user->password = $hashPassword;
@@ -105,20 +105,11 @@ class UserController extends \BaseController {
 	{
 		//
 	}
-
-    /**
-     * Login to user
-     */
     public function login()
     {
         $userName = Input::get('userName');
         $password = Input::get('password');
-        if(!$userName)
-            return View::make('login');
-        if($userName=="admin"&&$password!=null)
-        {
-            return View::make('Theme/index');
-        }
-        else return "You cannot access!!!";
+        return User::login($userName,$password);
     }
+
 }
