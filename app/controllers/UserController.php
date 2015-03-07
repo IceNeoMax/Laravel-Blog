@@ -109,6 +109,7 @@ class UserController extends \BaseController {
     {
         $userName = Input::get('userName');
         $password = Input::get('password');
+        //print_r(User::checkValidEmail($userName));
         return User::login($userName,$password);
     }
 

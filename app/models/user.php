@@ -17,8 +17,8 @@ class User extends \Jenssegers\Mongodb\Model {
     public static function checkValidEmail($email)
     {
         $success = User::where('email',$email)->first();
-        if($success!=null) return false;
-        return true;
+        if($success!=null) return "Co thong tin";
+        return "Khong co tai khoan";
     }
 
     /**
