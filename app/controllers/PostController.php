@@ -1,4 +1,5 @@
 <?php
+
 class PostController extends \BaseController {
     /**
 	 * Display a listing of the resource.
@@ -7,6 +8,7 @@ class PostController extends \BaseController {
 	 */
 	public function index()
 	{
+
 
         $posts = Post::all();
         //$count = Post::count();
@@ -45,18 +47,29 @@ class PostController extends \BaseController {
 	 * @return Response
 	 */
 	public function store()
-	{
+    {
         $title = Input::get('title');
-        $content= Input::get('content');
+        $content = Input::get('content');
         $author_id = Session::get('user_name');
-        $tags = explode(",",Input::get('tags'));
+        $tags = explode(",", Input::get('tags'));
         $post = new Post();
-        $post->title=$title;
-        $post->content=$content;
+        $post->title = $title;
+        $post->content = $content;
         $post->author_id = Session::get('user_id');
         $post->tags = $tags;
-		$result = $post->save();
-	}
+        $command = Input::get('publish');
+        if (isset($command)) {
+            $post->type = Post::$ACTIVE;
+            $result = $post->save();
+        }
+//        else
+//        {
+//            $post->type = Post::$DRAFT;
+//            $result = $post->save();
+//        }
+        //echo $post['_id'];
+        //return $result;
+    }
 
 
 	/**
@@ -108,5 +121,41 @@ class PostController extends \BaseController {
 	{
 		//
 	}
+    /*
+     * Create/save a draft post
+     */
+    public function draft()
+    {
+        $id = Input::get('id');
+        $content = Input::get('content');
+        $title = Input::get('title');
+        //lan dau tien
+        if($id=="") {
+            $tags = explode(",", Input::get('tags'));
+            $post = new Post();
+            if (isset($title)) $post->title = $title;
+            $post->content = $content;
+            $post->author_id = Session::get('user_id');
+            if (isset($tags)) $post->tags = $tags;
+            $post->type = POST::$DRAFT;
+            $post->save();
+            return Response::json(array(
+                'id' =>$post['_id'],
+                'content'=>$content
+            ));
+        }
+        else
+        {
+            $save = array(
+                'content'=> $content);
+            if (isset($title)) $save['title']=$title;
+            if(isset($content)) $post = Post::where("_id",$id)->update($save);
+            return Response::json(array(
+                'save' =>"done",
+                'id'=>$id,
+                'content'=>$content
+            ));
+        }
+    }
 
 }

@@ -21,6 +21,7 @@ Route::get('/login',function()
 });
 Route::post('/login','UserController@login');
 Route::get('post/index','PostController@index');
+Route::post('post/draft','PostController@draft');
 //API for Post Controller
 Route::resource('post','PostController');
 //API for User Controller

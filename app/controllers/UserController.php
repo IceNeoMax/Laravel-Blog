@@ -128,7 +128,9 @@ class UserController extends \BaseController {
         $password = Input::get('password');
         //print_r($this->destroy('54faa3287fd3630f1a47bb09'));
         //print_r(User::checkValidEmail($userName));
-        return User::login($email,$password);
+        $result =  User::login($email,$password);
+        if($result == true)
+            Redirect::to('/post/index');
     }
 
 }

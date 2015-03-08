@@ -33,8 +33,12 @@ class User extends \Jenssegers\Mongodb\Model {
          Session::put('user_id',$result[0]['_id']);
          Session::put('user_name',$result[0]['user_name']);
             //echo $result[0]['user_name'];
-            return "Welcome";
+            return true;
         }
-        else return "You cannot access!!!";
+        else
+        {
+            echo "You cannot access!!!";
+            return false;
+        }
     }
 }

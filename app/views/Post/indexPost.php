@@ -13,7 +13,9 @@
 
         foreach($posts as $post) {
             echo '<div class="jumbotron">';
-            echo '<h1>' .$post['title'].'</h1>';
+            echo '<h1>' .$post['title'];
+            if($post['type']=='draft') echo " (Draft)";
+            echo'</h1>';
 //            $firstEnd = strpos($post['content'],'.');
 //            echo " <p>".substr($post['content'],0,$firstEnd)."</p>";
             echo '<h2><p>'.$post['content'].'</p></h2>';
