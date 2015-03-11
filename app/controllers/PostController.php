@@ -25,7 +25,7 @@ class PostController extends \BaseController {
 //        return View::make('Post/createPost');
         //print_r(Post::getCommentsOfPost(1));
         //print_r(Post::countComment("54f86f11f7839ee808000029"));
-        return View::make('Post/indexPost',['posts'=>$posts]);
+        return View::make('Post/index',['posts'=>$posts]);
 	}
 
 
@@ -69,6 +69,7 @@ class PostController extends \BaseController {
 //        }
         //echo $post['_id'];
         //return $result;
+        return Redirect::to('post/index');
     }
 
 

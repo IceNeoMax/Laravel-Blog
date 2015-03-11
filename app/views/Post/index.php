@@ -46,15 +46,18 @@
                         <div class="panel panel-default">
 						<?php
                             foreach($posts as $post) {
-                                echo '';
                                 echo '<div class="panel-heading">';
-                                echo '<h3 class="panel-title"><h2><a href="">';
+                                echo '<h3 class="panel-title"><h2><a href="'.URL::to('/post/'.$post['_id']).'">';
                                 echo $post->title;
                                 echo '</a></h2></h3></div>';
 
                                 echo '<div class="panel-body">';
-
+                                $content = $post->content;
+                                if(strlen($content)<40)
+                                    echo $content;
+                                else echo substr($content,0,200);
                                 echo '</div>';
+
                                 echo '<div class="panel-footer">';
                                 echo '<span class="glyphicon glyphicon-tags">';
 

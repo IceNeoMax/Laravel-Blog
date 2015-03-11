@@ -30,7 +30,7 @@
             return "";
         }
         $(document).ready(function () {
-            setCookie("id","", 1)
+            setCookie("id","", 1);
             $('#summernote').summernote(
                 {
 //                    airMode: false,
@@ -43,6 +43,7 @@
 //                        ['insert', ['link', 'picture']]
 //                    ],
                     onChange: function(content, $editable) {
+
                         //console.log('onChange:', contents, $editable);
                         /*
                             get content
@@ -53,44 +54,62 @@
                             else
                                 init ajax sender(_id,content,title) to /post/draft
                          */
-                        var id = getCookie("id");
-                        if(id=="")
-                        {
-                            var request = $.ajax({
-                                url: "draft",
-                                type: "POST",
-                                data: {
-                                    content: content
-                                }});
-                            request.success(function (html) {
-                                 console.log(html);
-                                 setCookie("id", html.id, 1);
-                                });
-                        }
-                        else
-                        {
-                            var request = $.ajax({
-                            url: "draft",
-                            type: "POST",
-                            data: {
-                                content: content,
-                                id: id
-                            }
-                        });
-                            request.success(function (html) {
-                                //console.log(html);
-                                //setCookie("id", html.id, 1);
-                            });
-                        }
-                    }
+//                        var id = getCookie("id");
+//                        if(id=="")
+//                        {
+//                            var request = $.ajax({
+//                                url: "draft",
+//                                type: "POST",
+//                                data: {
+//                                    content: content
+//                                }});
+//                            request.success(function (html) {
+//                                 console.log(html);
+//                                 setCookie("id", html.id, 1);
+//                                });
+//                        }
+//                        else
+//                        {
+//                            var request = $.ajax({
+//                            url: "draft",
+//                            type: "POST",
+//                            data: {
+//                                content: content,
+//                                id: id
+//                            }
+//                        });
+//                            request.success(function (html) {
+//                                //console.log(html);
+//                                //setCookie("id", html.id, 1);
+//                            });
+//                        }
+                    },
+                    onImageUpload: function(files,editor,$editable){
+                           console.log('images upload ',files,editor,$editable);
 
-        })});
+                        //var url = location.hostname + "/meduza/public/resource/upload";
+                        //alert(url);
+//                        var request = $.ajax({
+//                            url: url,
+//                            type: "POST",
+//                            data: {
+//                                file: files
+//                            }
+//                    });
+//                        request.success(function (html) {
+//                            console.log(html);
+//                            //setCookie("id", html.id, 1);
+//                        });
+                    }
+            })
+        });
+
     </script>
 </head>
 <body style="background-image: url('http://www.splitshire.com/wp-content/uploads/2014/02/SplitShire_blur10.jpg')">
 <div class="container" style="background-color: #ffffff">
     <?php echo Form::open(array(
-        'url' => 'post',
+        'url' =>'post/store'
     ));?>
     <?php echo Form::label("title", "Title"); ?>
     <?php echo "<br>";
@@ -98,7 +117,6 @@
     width:100%",'class'=>'form-control']);?>
 <br>
 <br>
-
 <textarea id="summernote" name="content"></textarea>
 <br>
 <br>
@@ -107,7 +125,6 @@
     width:100%",'class'=>'form-control']);?>
 <br>
 <br>
-
 <div style="text-align:center">
     <input class="btn btn-primary btn-lg" style="width: 300px; margin: 0 auto;" type="submit" name="publish" value="Publish">
     <input class="btn btn-primary btn-lg" style="width: 300px; margin: 0 auto;" type="submit" name="draft" value="Draft">
@@ -115,3 +132,6 @@
 </div>
 </body>
 </html>
+<script>
+
+</script>
