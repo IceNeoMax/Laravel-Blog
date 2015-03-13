@@ -1,0 +1,8 @@
+use meduza
+db.createUser(
+  {
+    user: "rock1",
+    pwd: "rock",
+    roles: [ { role: "dbOwner", db: "meduza" } ]
+  }
+)

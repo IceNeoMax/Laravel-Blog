@@ -20,6 +20,10 @@ Route::get('/login',function()
     return View::make('login');
 });
 Route::post('/login','UserController@login');
+Route::get('post/index','PostController@index');
+Route::post('post/store','PostController@store');
+Route::post('post/draft','PostController@draft');
+Route::post('resource/upload','ResourceController@upload');
 //API for Post Controller
 Route::resource('post','PostController');
 //API for User Controller

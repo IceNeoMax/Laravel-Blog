@@ -22,15 +22,22 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => getenv('OPENSHIFT_MYSQL_DB_HOST')==''?'localhost':getenv('OPENSHIFT_MYSQL_DB_HOST'),
 			'database'  => 'meduza',
-			'username'  => 'admin',
-			'password'  => 'admin',
+			'username'  => getenv('OPENSHIFT_MYSQL_DB_USERNAME')==''?'admin':getenv('OPENSHIFT_MYSQL_DB_USERNAME'),
+			'password'  => getenv('OPENSHIFT_MYSQL_DB_PASSWORD')==''?'admin':getenv('OPENSHIFT_MYSQL_DB_PASSWORD'),
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
-
+		'mongodb'=>array(
+			'driver'   => 'mongodb',
+			'host'     => getenv('OPENSHIFT_MONGODB_DB_HOST')==''?'localhost':getenv('OPENSHIFT_MONGODB_DB_HOST'),
+			'port'     => getenv('OPENSHIFT_MONGODB_DB_PORT')==27017?'localhost':getenv('OPENSHIFT_MYSQL_DB_PORT'),
+			'username' => getenv('OPENSHIFT_MYSQL_DB_USERNAME')==''?'admin':getenv('OPENSHIFT_MYSQL_DB_USERNAME'),
+			'password' => getenv('OPENSHIFT_MYSQL_DB_PASSWORD')==''?'admin':getenv('OPENSHIFT_MYSQL_DB_PASSWORD'),
+			'database' => 'meduza',
+		),
 		'pgsql' => array(
 			'driver'   => 'pgsql',
 			'host'     => 'localhost',
