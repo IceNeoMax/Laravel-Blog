@@ -19,6 +19,10 @@ Route::get('/login',function()
 {
     return View::make('login');
 });
+Route::get('/register',function()
+{
+    return View::make('User/register');
+});
 Route::post('/login','UserController@login');
 Route::get('post/index','PostController@index');
 Route::post('post/store','PostController@store');

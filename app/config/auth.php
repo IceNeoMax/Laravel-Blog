@@ -15,7 +15,7 @@ return array(
 	|
 	*/
 
-	'driver' => 'eloquent',
+	'driver' => 'mongo',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -29,7 +29,6 @@ return array(
 	*/
 
 	'model' => 'User',
-
 	/*
 	|--------------------------------------------------------------------------
 	| Authentication Table
@@ -41,7 +40,8 @@ return array(
 	|
 	*/
 
-	'table' => 'users',
+	'collection' => 'users',
+    //'table'=>'users',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -57,15 +57,15 @@ return array(
 	| they have less time to be guessed. You may change this as needed.
 	|
 	*/
-
-	'reminder' => array(
-
-		'email' => 'emails.auth.reminder',
-
-		'table' => 'password_reminders',
-
-		'expire' => 60,
-
-	),
+//
+//	'reminder' => array(
+//
+//		'email' => 'emails.auth.reminder',
+//
+//		'table' => 'password_reminders',
+//
+//		'expire' => 60,
+//
+//	),
 
 );

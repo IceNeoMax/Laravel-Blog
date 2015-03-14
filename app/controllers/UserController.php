@@ -51,17 +51,17 @@ class UserController extends \BaseController {
         $description = Input::get('description') or ("");
         $email = Input::get('email');
         $valid = User::checkValidEmail($email);
-        if(!$valid) return false;
+        if(!$valid) return "Da co tai khoan";
         //Luu thong tin
-        $user->userName = $userName;
+        if($userName!=null)$user->userName = $userName;
         $user->password = $hashPassword;
-        $user->description = $description;
+        if($description!=null)$user->description = $description;
         $user->email = $email;
-        //$user->save();
+        $user->save();
         //Tao thu muc dua theo ten cua userName
         $folderName =  str_replace(" ","",$userName);
         //$success = File::copyDirectory(defaultFolder,$folderName);
-        //return $success;
+        return "sucessful";
 
 	}
 

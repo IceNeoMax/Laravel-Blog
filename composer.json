@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"jenssegers/mongodb": "*"
+        "jenssegers/mongodb": "*",
+        "navruzm/laravel-mongo-auth": "*"
 	},
 	"autoload": {
 		"classmap": [
@@ -34,5 +35,5 @@
 	"config": {
 		"preferred-install": "dist"
 	},
-	"minimum-stability": "stable"
+	"minimum-stability": "dev"
 }
