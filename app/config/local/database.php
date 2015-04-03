@@ -31,12 +31,12 @@ return array(
 			'prefix'    => '',
 		),
 		'mongodb'=>array(
-			'driver'   => 'mongodb',
-			'host'     => getenv('OPENSHIFT_MONGODB_DB_HOST')==''?'localhost':getenv('OPENSHIFT_MONGODB_DB_HOST'),
-			'port'     => getenv('OPENSHIFT_MONGODB_DB_PORT')==27017?'localhost':getenv('OPENSHIFT_MYSQL_DB_PORT'),
-			'username' => getenv('OPENSHIFT_MYSQL_DB_USERNAME')==''?'admin':getenv('OPENSHIFT_MYSQL_DB_USERNAME'),
-			'password' => getenv('OPENSHIFT_MYSQL_DB_PASSWORD')==''?'admin':getenv('OPENSHIFT_MYSQL_DB_PASSWORD'),
-			'database' => 'meduza',
+		    'driver'   => 'mongodb',
+            'host'     => 'ds059661.mongolab.com',
+            'port'     =>  59661,
+            'username' => 'admin',
+            'password' => 'admin',
+            'database' => 'medusa'
 		),
 		'pgsql' => array(
 			'driver'   => 'pgsql',
