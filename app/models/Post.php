@@ -8,8 +8,6 @@
  */
 class Post extends \Jenssegers\Mongodb\Model
 {
-    public static $ACTIVE = 1;
-    public static $DRAFT = 0;
     protected $collection="posts";
     public function convertToMongoDate($value)
     {
