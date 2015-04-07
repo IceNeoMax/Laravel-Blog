@@ -15,9 +15,17 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function getIndex()
 	{
-		return View::make('hello');
+		return View::make('index');
 	}
 
+	public function userpage()
+	{
+		return View::make('user.home');
+	}
+
+	public function useradmin(){
+		return View::make('user.admin');
+	}
 }

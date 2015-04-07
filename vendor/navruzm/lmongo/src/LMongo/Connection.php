@@ -239,7 +239,7 @@ class Connection {
 //    {
 //        return new \MongoCollection($this->getMongoDB(), $name);
     {
-        var_dump($mongo = new \MongoCollection($this->getMongoDB(), 'users'));
+        $mongo = new \MongoCollection($this->getMongoDB(), 'users');
         return $mongo;
     }
 }

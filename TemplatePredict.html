@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>Nhập thông tin cá nhân của bạn</h1>
+    <p>Giới tính: </p><input type="text"/>
+    <p>Tuổi: </p><input type="text"/>
+    <h1>Thông tin bệnh của bạn: </h1>
+    <div>
+        <p>Kiểu bệnh</p>
+        <select id="kieuBenh">
+            <option value="0">Hô hấp</option>
+            <option value="1">Tiêu hóa</option>
+        </select>
+        <p>Triệu chứng</p>
+        <select id="trieuChung" multiple>
+        </select>
+        <button id="predict" onclick="predict();">Chuẩn đoán</button>
+    </div>
+    <p id="benh "></p>
+</body>
+<script>
+    var tC = $("#trieuChung");
+    var choice1 = [["Hắt hơi","Chảy nước mũi","Ngạt mũi","Đau đầu nhẹ","Đau họng"],["Đau bụng dưới","Đau bụng giữa","Táo bón"]];
+    function showList()
+    {
+        var list = $('#trieuChung');
+        var val = $('#kieuBenh').val();
+        var choice = choice1[val];
+        $('option',list).remove();
+        $.each(choice,function(text,key)
+                {
+                    var option = new Option(key,text);
+                    list.append($(option));
+                }
+        );
+    }
+    var kB = $('#kieuBenh').val();
+    $('#kieuBenh').change(function()
+            {
+                showList();
+            }
+    );
+    function predict()
+    {
+        var str="";
+        var list = new Array();
+        $( "#trieuChung option:selected" ).each(function() {
+            str = $( this ).text() + " ";
+            list.push(str);
+            console.log(str);
+        });
+        console.log(list);
+    }
+    showList();
+</script>
+</html>

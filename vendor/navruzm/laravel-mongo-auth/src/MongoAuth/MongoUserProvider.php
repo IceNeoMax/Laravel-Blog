@@ -113,7 +113,8 @@ class MongoUserProvider implements UserProviderInterface {
      */
     public function retrieveByToken($identifier, $token)
     {
-        // TODO: Implement retrieveByToken() method.
+        $user = User::where('_id',$identifier)->where('remember_token',$token)->first();
+	return $user;
     }
 
     /**
@@ -125,6 +126,7 @@ class MongoUserProvider implements UserProviderInterface {
      */
     public function updateRememberToken(UserInterface $user, $token)
     {
-        // TODO: Implement updateRememberToken() method.
+	    $userId = $user->getAuthIdentifier();
+	    //$acc = $this->retrieveByID($userId);
     }
 }

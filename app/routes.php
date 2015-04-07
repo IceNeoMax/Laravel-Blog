@@ -11,24 +11,36 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('index');
-});
-Route::get('/login',function()
-{
-    return View::make('login');
-});
-Route::get('/register',function()
-{
-    return View::make('User/register');
-});
-Route::post('/login','UserController@login');
+Route::get('/login','UserController@getLogin');
+Route::post('/login','UserController@postLogin');
+Route::get('/register','UserController@getRegister');
+Route::post('/register','UserController@postRegister');
+Route::get('/logout','UserController@getLogout');
+Route::get('/{username}',['as'=> 'user.page', 'uses' => 'HomeController@userpage']);
+Route::post('check-username','UserController@check_username');
+Route::post('check-email','UserController@check_email');
+Route::get('/','HomeController@getIndex');
+Route::post('post/create','PostController@store');
 Route::get('post/index','PostController@index');
-Route::post('post/store','PostController@store');
-Route::post('post/draft','PostController@draft');
-Route::post('resource/upload','ResourceController@upload');
 //API for Post Controller
 Route::resource('post','PostController');
 //API for User Controller
 Route::resource('user','UserController');
+// Route::filter('check-user',function(){
+// 	if(Session::has('user')){
+// 		$username = Session::get('username');
+// 		if(Session[])
+// 		return Redirect::to('')
+// 	}
+// });
+// Route::group(['prefix' => $us'admin', 'before' => 'auth'], function () {
+Route::get('{username}/admin', array('before' => 'check_admin', 'as' => 'user.admin', 'uses' => 'HomeController@useradmin' ))->where(array( 'username' => '[a-zA-Z0-9-_]+'));
+
+Route::filter('check_admin', function() {
+	$username = Request::segment(1); // Lay thong tin user tren Param
+	if( !User::check_logged($username) ) {
+		return Redirect::route('user.page', array('username' => $username));
+		//die('Nothing to do');
+	}
+});
+

@@ -51,17 +51,17 @@ class UserController extends \BaseController {
         $description = Input::get('description') or ("");
         $email = Input::get('email');
         $valid = User::checkValidEmail($email);
-        if(!$valid) return "Da co tai khoan";
+        if(!$valid) return false;
         //Luu thong tin
-        if($userName!=null)$user->userName = $userName;
+        $user->userName = $userName;
         $user->password = $hashPassword;
-        if($description!=null)$user->description = $description;
+        $user->description = $description;
         $user->email = $email;
-        $user->save();
+        //$user->save();
         //Tao thu muc dua theo ten cua userName
         $folderName =  str_replace(" ","",$userName);
         //$success = File::copyDirectory(defaultFolder,$folderName);
-        return "sucessful";
+        //return $success;
 
 	}
 
@@ -122,15 +122,93 @@ class UserController extends \BaseController {
      * Login to website
      * tested
      */
-    public function login()
+    public function getLogin()
     {
-        $email = Input::get('email');
-        $password = Input::get('password');
-        //print_r($this->destroy('54faa3287fd3630f1a47bb09'));
-        //print_r(User::checkValidEmail($userName));
-        $result =  User::login($email,$password);
-        if($result == true)
-            Redirect::to('/post/index');
+        return View::make('user.login');
     }
 
+    public function postLogin()
+    {
+	//echo "Touch"; 	
+	$credentials = array(
+                'user_input' => Input::get('user_input'),
+                'password' => Input::get('password')
+        );
+
+
+        $rules = array(
+            'user_input' => 'required',
+            'password' => 'required'
+        );
+        
+        $validator = Validator::make($credentials, $rules);
+        if ($validator->passes()) { //kiem tra dieu kien credentials da thoa man rule hay chua
+            $check = User::check_login($credentials['user_input'],$credentials['password']);          
+            // dd(Session::get('user_name'));
+            if($check){
+                $username=$check['username'];
+		$userId = $check['_id'];
+                //return Redirect::route('user.page', array('username' => $username))->with('success', "Hi $username, Welcome back your Blog!");
+                return Redirect::back()->with('');
+            }
+            else{
+                return Redirect::back()->with('success',"Tài khoản không chính xác. Đăng nhập thất bại");
+            }
+        }
+    }
+    public function getRegister()
+    {
+    	return View::make('user.register');
+    }
+
+    public function postRegister()
+    {
+        $credentials = array(
+            'username' => Input::get('username'),
+            'password' => Input::get('password'),
+            'email' => Input::get('email'),
+        );
+        $rules = array(
+            'username' => 'required|min:3|max:30|unique:users',
+            'password' => 'required|min:6',
+            'email' => 'required|email|unique:users',
+        );
+        if (!Validator::make($credentials, $rules)->fails()) {
+            $user = new User();
+            $user->username=$credentials['username'];
+            //$credentials['password'] = Hash::make($credentials['password']);
+            $user->password=Hash::make($credentials['password']);
+            $user->email=$credentials['email'];
+	    $user->remember_token ="";
+            $user->save();
+            return Redirect::to('/login')->with('success', 'User is registered!');
+        } else
+            return Redirect::back();
+    }
+
+    public function getProfile()
+    {
+    	return View::make('user.profile');
+    }
+
+    public function check_username(){
+        if (User::check_username(Input::get('username'))){
+            return "false"; //AJAX chỉ nhận giá trị chuỗi. Nếu username tồn tại, trả về "false" để báo lỗi
+        }else{
+            return "true";
+        }
+    }
+
+    public function check_email(){
+        if (User::check_email(Input::get('email'))){
+            return "false"; //AJAX chỉ nhận giá trị chuỗi. Nếu email tồn tại, trả về "false" để báo lỗi
+        }else{
+            return "true";
+        }
+    }
+
+    public function getLogout(){
+        User::logout();
+        return Redirect::to('/');
+    }
 }
