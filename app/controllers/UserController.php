@@ -148,8 +148,12 @@ class UserController extends \BaseController {
             if($check){
                 $username=$check['username'];
 		$userId = $check['_id'];
+<<<<<<< HEAD
                 //return Redirect::route('user.page', array('username' => $username))->with('success', "Hi $username, Welcome back your Blog!");
                 return Redirect::back()->with('');
+=======
+                return Redirect::route('user.page', array('username' => $username))->with('success', "Hi $username, Welcome back your Blog!");
+>>>>>>> b9d25ade8fc3a270431a9da96f872fef67395913
             }
             else{
                 return Redirect::back()->with('success',"Tài khoản không chính xác. Đăng nhập thất bại");

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+=======
+<!DOCTYPE html>
+>>>>>>> b9d25ade8fc3a270431a9da96f872fef67395913
 <html>
 <h1 align="center">
     <p style="color: #ffffff">Create Post</p>
@@ -36,7 +40,11 @@
                         ['insert', ['link', 'picture', 'hr']],
                         ['view', ['fullscreen', 'codeview']],
                         ['help', ['help']]
+<<<<<<< HEAD
                     ]
+=======
+                    ],
+>>>>>>> b9d25ade8fc3a270431a9da96f872fef67395913
                 });
 
         });
@@ -45,7 +53,11 @@
 <body style="background-image: url('http://www.splitshire.com/wp-content/uploads/2014/02/SplitShire_blur10.jpg')">
 <div class="container" style="background-color: #ffffff">
     <?php echo Form::open(array(
+<<<<<<< HEAD
         'url' => 'post/create',
+=======
+        'url' => 'post',
+>>>>>>> b9d25ade8fc3a270431a9da96f872fef67395913
     ));?>
     <?php echo Form::label("title", "Title"); ?>
     <?php echo "<br>";

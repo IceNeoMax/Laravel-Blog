@@ -8,7 +8,11 @@ class PostController extends \BaseController {
 	public function index()
 	{
 
+<<<<<<< HEAD
         $post = Post::all();//->toJson();
+=======
+        //$post = Post::all()->toJson();
+>>>>>>> b9d25ade8fc3a270431a9da96f872fef67395913
         //$count = Post::count();
 //        $demo = $this->getPostByTag("smile");
 //        //$demo = $this->getPostByTag("love");
@@ -20,7 +24,11 @@ class PostController extends \BaseController {
             ]);
         //return View::make('Post/index',[]);
         //print_r(Post::getCommentsOfPost(1));
+<<<<<<< HEAD
         //print_r(Post::countComment("54f86f11f7839ee808000029"));
+=======
+        print_r(Post::countComment("54f86f11f7839ee808000029"));
+>>>>>>> b9d25ade8fc3a270431a9da96f872fef67395913
 	}
 
 
@@ -31,11 +39,18 @@ class PostController extends \BaseController {
 	 */
 	public function create()
 	{
+<<<<<<< HEAD
 
         $result = Auth::check();
 	    if($result)
 		    return View::make('Post/createPost');
 	    else return Redirect::to('/login');
+=======
+	   $result = Auth::check();
+	   if($result)				       	 
+		return View::make('Post/createPost');
+	   else return Redirect::to('/login');		
+>>>>>>> b9d25ade8fc3a270431a9da96f872fef67395913
 	}
 
 
@@ -53,9 +68,16 @@ class PostController extends \BaseController {
         $post = new Post();
         $post->title=$title;
         $post->content=$content;
+<<<<<<< HEAD
         $post->author_id = Auth::id();
         $post->tags = $tags;
 		$result = $post->save();
+=======
+        $post->author_id = Session::get('user_id');
+        $post->tags = $tags;
+		$result = $post->save();
+//        echo $title;
+>>>>>>> b9d25ade8fc3a270431a9da96f872fef67395913
 	}
 
 

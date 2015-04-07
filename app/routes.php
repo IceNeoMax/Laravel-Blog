@@ -20,8 +20,11 @@ Route::get('/{username}',['as'=> 'user.page', 'uses' => 'HomeController@userpage
 Route::post('check-username','UserController@check_username');
 Route::post('check-email','UserController@check_email');
 Route::get('/','HomeController@getIndex');
+<<<<<<< HEAD
 Route::post('post/create','PostController@store');
 Route::get('post/index','PostController@index');
+=======
+>>>>>>> b9d25ade8fc3a270431a9da96f872fef67395913
 //API for Post Controller
 Route::resource('post','PostController');
 //API for User Controller
