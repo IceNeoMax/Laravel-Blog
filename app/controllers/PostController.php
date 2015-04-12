@@ -8,19 +8,21 @@ class PostController extends \BaseController {
 	public function index()
 	{
 
-        $post = Post::all();//->toJson();
-        //$count = Post::count();
-//        $demo = $this->getPostByTag("smile");
-//        //$demo = $this->getPostByTag("love");
-//        $userName = 'NhuanTD';
-        return View::make("Post/index",
+        $posts = Post::all();//->toJson();
+        $format="F j, Y, g:i a";
+        foreach($posts as $post)
+        {
+            $date = new DateTime($post['created_at']);
+            $formatDate = $date->format($format);
+            $post["create_time"]=$formatDate;
+            $user = User::getUserById($post["author_id"]);
+            $post["username"] = $user["username"];
+        }
+        return View::make("home.index",
             [
-                'posts'=>$post,
+                'posts'=>$posts,
                 //'count'=>$count,
             ]);
-        //return View::make('Post/index',[]);
-        //print_r(Post::getCommentsOfPost(1));
-        //print_r(Post::countComment("54f86f11f7839ee808000029"));
 	}
 
 
@@ -67,11 +69,14 @@ class PostController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        $post = Post::where('_id',$id)->get();
-        return View::make("Post/index",
-            [
-                'posts'=>$post,
-            ]);
+        $post = Post::getPostById($id);
+        $format="F j, Y, g:i a";
+        $date = new DateTime($post['created_at']);
+        $formatDate = $date->format($format);
+        $post["create_time"]=$formatDate;
+        $user = User::getUserById($post['author_id']);
+        $post["username"] = $user["username"];
+        return View::make("home.show", ['post'=>$post]);
 	}
 
 
