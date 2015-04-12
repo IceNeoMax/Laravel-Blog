@@ -16,19 +16,25 @@ Route::post('/login','UserController@postLogin');
 Route::get('/register','UserController@getRegister');
 Route::post('/register','UserController@postRegister');
 Route::get('/logout','UserController@getLogout');
-Route::get('/{username}',['as'=> 'user.page', 'uses' => 'HomeController@userpage']);
+//Route::get('/{username}',['as'=> 'user.page', 'uses' => 'HomeController@userpage']);
 Route::post('check-username','UserController@check_username');
 Route::post('check-email','UserController@check_email');
 Route::get('/','HomeController@getIndex');
-<<<<<<< HEAD
 Route::post('post/create','PostController@store');
 Route::get('post/index','PostController@index');
-=======
->>>>>>> b9d25ade8fc3a270431a9da96f872fef67395913
 //API for Post Controller
 Route::resource('post','PostController');
 //API for User Controller
 Route::resource('user','UserController');
+Route::get('user','UserController@index');
+Route::group(array('prefix'=>'{username}'),function()
+{
+    Route::resource('post','PostController');
+    Route::controller('backend', 'AdminController');
+});
+Route::group(array('prefix'=>'api'),function(){
+    Route::resource('comments','CommentController');
+});
 // Route::filter('check-user',function(){
 // 	if(Session::has('user')){
 // 		$username = Session::get('username');
@@ -38,7 +44,12 @@ Route::resource('user','UserController');
 // });
 // Route::group(['prefix' => $us'admin', 'before' => 'auth'], function () {
 Route::get('{username}/admin', array('before' => 'check_admin', 'as' => 'user.admin', 'uses' => 'HomeController@useradmin' ))->where(array( 'username' => '[a-zA-Z0-9-_]+'));
-
+//Route::get('post/{post_id}/comments','PostController@getComment');
+//Route::post('post/{post_id}/comments','PostController@store');
+Route::get('posts/demo',function()
+{
+    return View::make('post/demoComment');
+});
 Route::filter('check_admin', function() {
 	$username = Request::segment(1); // Lay thong tin user tren Param
 	if( !User::check_logged($username) ) {
@@ -46,4 +57,10 @@ Route::filter('check_admin', function() {
 		//die('Nothing to do');
 	}
 });
+Route::get('/backend','AdminController@getDashBoard');
+Route::controller('/backend', 'AdminController');
+Route::controller('/post','PostController');
+//App::missing(function($exception) {
+//    return View::make('index');
+//});
 

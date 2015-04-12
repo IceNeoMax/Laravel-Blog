@@ -50,7 +50,13 @@ Route::filter('auth.basic', function()
 {
 	return Auth::basic();
 });
+Route::filter('auth.basic', function()
+{
+    if(Auth::check())
+    {
 
+    }
+});
 /*
 |--------------------------------------------------------------------------
 | Guest Filter

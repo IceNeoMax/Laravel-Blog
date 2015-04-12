@@ -9,6 +9,14 @@
 class Post extends \Jenssegers\Mongodb\Model
 {
     protected $collection="posts";
+    public function comments()
+    {
+        return $this->hasMany('Comment','post_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo('User','author_id');
+    }
     public function convertToMongoDate($value)
     {
         return $this->fromDateTime($value);
@@ -18,6 +26,10 @@ class Post extends \Jenssegers\Mongodb\Model
      * @param string $tag
      * @return Post
      */
+    public static function getPostById($id)
+    {
+        return Post::where('_id',$id)->first();
+    }
     public static function getPostByTag($tag)
     {
         $post = Post::where('tags',$tag)->get()->toJson();
@@ -30,22 +42,22 @@ class Post extends \Jenssegers\Mongodb\Model
      */
     public static function getCommentsOfPost($post_id)
     {
-        $comments = Post::where('post_id',$post_id)->get(array('comments'))->toJson();
+        $comments = Comment::where('post_id',$post_id)->get();
         return $comments;
     }
-    /*
-     * Add a new comment to the specific post
-     * @param integer $post_id
-     * @return successful or not
-     */
-    public static function addCommentToPost($post_id,$comments)
-    {
-        $comments = array(array(
-            'comment_id'=>1,
-            'comment'=>'Imagination',
-        ));
-        $post = Post::where('post_id',$post_id)->update(array('comments'=>$comments));
-    }
+//    /*
+//     * Add a new comment to the specific post
+//     * @param integer $post_id
+//     * @return successful or not
+//     */
+//    public static function addCommentToPost($post_id,$comments)
+//    {
+//        $comments = array(array(
+//            'comment_id'=>1,
+//            'comment'=>'Imagination',
+//        ));
+//        $post = Post::where('post_id',$post_id)->update(array('comments'=>$comments));
+//    }
     /*
      * Count number of comments in the specific post
      */

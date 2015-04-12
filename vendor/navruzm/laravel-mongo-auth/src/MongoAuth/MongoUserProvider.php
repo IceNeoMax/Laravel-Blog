@@ -126,12 +126,7 @@ class MongoUserProvider implements UserProviderInterface {
      */
     public function updateRememberToken(UserInterface $user, $token)
     {
-<<<<<<< HEAD
 	    $userId = $user->getAuthIdentifier();
 	    //$acc = $this->retrieveByID($userId);
-=======
-	$userId = $user->getAuthIdentifier();
-	$acc = $this->retrieveByID($userId); 
->>>>>>> b9d25ade8fc3a270431a9da96f872fef67395913
     }
 }

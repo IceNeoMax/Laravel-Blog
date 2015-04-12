@@ -22,8 +22,10 @@ class HomeController extends BaseController {
 
 	public function userpage()
 	{
-		return View::make('user.home');
-	}
+        //echo "user page";
+		//return View::make('user.home');
+	    return Redirect::to();
+    }
 
 	public function useradmin(){
 		return View::make('user.admin');

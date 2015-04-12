@@ -33,10 +33,10 @@ return array(
 		'mongodb'=>array(
 			'driver'   => 'mongodb',
 			'host'     => 'ds059661.mongolab.com',
-           		'port'     =>  59661,
-            		'username' => 'admin',
-            		'password' => 'admin',
-            		'database' => 'medusa'
+           	'port'     =>  59661,
+            'username' => 'admin',
+            'password' => 'admin',
+            'database' => 'medusa'
 		),
 		'pgsql' => array(
 			'driver'   => 'pgsql',

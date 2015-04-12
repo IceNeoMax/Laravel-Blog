@@ -75,8 +75,14 @@ class UserController extends \BaseController {
 	public function show($id)
 	{
 		//
-        return User::where('_id',$id);
-
+        $users = User::all();
+        foreach($users as $user)
+        {
+            //print_r($user);
+            $post = $user->posts();
+        }
+        //print_r($user);
+        return Response::json($post);
 	}
 
 
@@ -124,18 +130,17 @@ class UserController extends \BaseController {
      */
     public function getLogin()
     {
+        //echo Cookie::get("api_token");
         return View::make('user.login');
     }
 
     public function postLogin()
     {
 	//echo "Touch"; 	
-	$credentials = array(
+	    $credentials = array(
                 'user_input' => Input::get('user_input'),
                 'password' => Input::get('password')
         );
-
-
         $rules = array(
             'user_input' => 'required',
             'password' => 'required'
@@ -147,13 +152,10 @@ class UserController extends \BaseController {
             // dd(Session::get('user_name'));
             if($check){
                 $username=$check['username'];
-		$userId = $check['_id'];
-<<<<<<< HEAD
+		        $userId = $check['_id'];
+                Cookie::forever("api_token",$userId);
                 //return Redirect::route('user.page', array('username' => $username))->with('success', "Hi $username, Welcome back your Blog!");
-                return Redirect::back()->with('');
-=======
-                return Redirect::route('user.page', array('username' => $username))->with('success', "Hi $username, Welcome back your Blog!");
->>>>>>> b9d25ade8fc3a270431a9da96f872fef67395913
+                return Redirect::intended();
             }
             else{
                 return Redirect::back()->with('success',"Tài khoản không chính xác. Đăng nhập thất bại");

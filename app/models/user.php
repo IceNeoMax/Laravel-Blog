@@ -2,9 +2,13 @@
 class User extends \Jenssegers\Mongodb\Model implements \Illuminate\Auth\UserInterface, \Illuminate\Auth\Reminders\RemindableInterface {
 	protected $collection="users";
 	protected $hidden = array('password');
+    public function posts()
+    {
+        return $this->hasMany('Post','user_id');
+    }
     public static function getUserById($user_id)
     {
-        $user = User::where('_id',$user_id)->get();
+        $user = User::where('_id',$user_id)->first();
         return $user;
     }
     public static function addFieldToUser($user_id,$field)
@@ -36,7 +40,7 @@ class User extends \Jenssegers\Mongodb\Model implements \Illuminate\Auth\UserInt
     {
         //$result = User::where('username',$user_input)->where('password',$password)->first();	
 	$data = array('email'=>$user_input,'password'=>$password);
-	$result=Auth::attempt($data,true);
+	$result=Auth::attempt($data);
         if(!$result)
         {
           return false;
