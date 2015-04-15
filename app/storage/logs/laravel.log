@@ -11130,3 +11130,9 @@ Stack trace:
 #15 C:\wamp\www\meduza\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(641): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
 #16 C:\wamp\www\meduza\public\index.php(49): Illuminate\Foundation\Application->run()
 #17 {main} [] []
+[2015-04-15 02:50:30] production.ERROR: exception 'InvalidArgumentException' with message 'Command "model" is not defined.' in D:\Laravel-Blog\vendor\symfony\console\Symfony\Component\Console\Application.php:564
+Stack trace:
+#0 D:\Laravel-Blog\vendor\symfony\console\Symfony\Component\Console\Application.php(190): Symfony\Component\Console\Application->find('model')
+#1 D:\Laravel-Blog\vendor\symfony\console\Symfony\Component\Console\Application.php(124): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 D:\Laravel-Blog\artisan(59): Symfony\Component\Console\Application->run()
+#3 {main} [] []
