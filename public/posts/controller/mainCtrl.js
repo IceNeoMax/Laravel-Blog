@@ -11,8 +11,9 @@ angular.module('mainCtrl',[])
             {
                 $scope.comments = data;
                 $scope.loading = true;
-            }
-        );
+            }).error(function(data){
+            console.log(data);
+        });
         $scope.submitComment = function()
         {
             $scope.loading = true;

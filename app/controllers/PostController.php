@@ -140,4 +140,19 @@ class PostController extends \BaseController {
         $post = Post::getPostById($id);
         return View::make('Post/updatePost',array('post'=>Post::getPostById($id)));
     }
+    public function getIndex($username)
+    {
+        $userId = User::where('username',$username)->get(array("_id"));
+        $format="F j, Y, g:i a";
+        $posts = Post::where("author_id",$userId[0]["_id"])->get();
+        foreach($posts as $post)
+        {
+            $date = new DateTime($post['created_at']);
+            $formatDate = $date->format($format);
+            $post["create_time"]=$formatDate;
+            $user = User::getUserById($post["author_id"]);
+            $post["username"] = $user["username"];
+        }
+        return View::make('home.index',array("posts"=>$posts));
+    }
 }

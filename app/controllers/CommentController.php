@@ -142,6 +142,8 @@ class CommentController extends \BaseController {
         else return Response::json(array('success' => false));
         //return Response::json(array('success' => true));
     }
+    public function getCommentOfPost($id)
+    {
 
-
+    }
 }

@@ -4,6 +4,7 @@
 		<link rel="stylesheet" type="text/css" href="https://googledrive.com/host/0B8z8ereLRdjhMHM2cmZPWE1IVW8">
 		<script src="smooth-scroll-master/dist/js/bind-polyfill.js"> </script>
 		<script src="smooth-scroll-master/dist/js/smooth-scroll.js"> </script>
+		@yield('script')
 		<title>Concept4</title>
 		
 	</head>

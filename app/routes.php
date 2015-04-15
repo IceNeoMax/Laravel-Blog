@@ -29,7 +29,8 @@ Route::resource('user','UserController');
 Route::get('user','UserController@index');
 Route::group(array('prefix'=>'{username}'),function()
 {
-    Route::resource('post','PostController');
+    Route::get("/post","PostController@getIndex");
+    //Route::resource('post','PostController');
     Route::controller('backend', 'AdminController');
 });
 Route::group(array('prefix'=>'api'),function(){
@@ -59,6 +60,7 @@ Route::filter('check_admin', function() {
 });
 Route::get('/backend','AdminController@getDashBoard');
 Route::controller('/backend', 'AdminController');
+Route::resource("post.comments",'PostCommentController');
 Route::controller('/post','PostController');
 //App::missing(function($exception) {
 //    return View::make('index');

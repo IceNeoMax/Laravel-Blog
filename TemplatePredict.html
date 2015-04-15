@@ -6,56 +6,91 @@
     <title></title>
 </head>
 <body>
-    <h1>Nhập thông tin cá nhân của bạn</h1>
-    <p>Giới tính: </p><input type="text"/>
-    <p>Tuổi: </p><input type="text"/>
-    <h1>Thông tin bệnh của bạn: </h1>
-    <div>
-        <p>Kiểu bệnh</p>
-        <select id="kieuBenh">
-            <option value="0">Hô hấp</option>
-            <option value="1">Tiêu hóa</option>
-        </select>
-        <p>Triệu chứng</p>
-        <select id="trieuChung" multiple>
-        </select>
-        <button id="predict" onclick="predict();">Chuẩn đoán</button>
-    </div>
-    <p id="benh "></p>
+    <h1>GCD</h1>
+    <p >M : </p><input id="m" type="text"/>
+    <p >N: </p><input id="n" type="text"/>
+    <p>
+    <button onclick="gcd()">
+        Calculate
+    </button>
+    </p>
+    <p> Result
+    <br/>
+    <input id="result" type="text"/>
+    </p>
+    <table id="resultTable">
+        <tr>
+            <td>M</td>
+            <td>N</td>
+            <td>R</td>
+            <td>Q</td>
+            <td>A1</td>
+            <td>A2</td>
+            <td>B1</td>
+            <td>B2</td>
+        </tr>
+    </table>
 </body>
 <script>
-    var tC = $("#trieuChung");
-    var choice1 = [["Hắt hơi","Chảy nước mũi","Ngạt mũi","Đau đầu nhẹ","Đau họng"],["Đau bụng dưới","Đau bụng giữa","Táo bón"]];
-    function showList()
+    gcd = function()
     {
-        var list = $('#trieuChung');
-        var val = $('#kieuBenh').val();
-        var choice = choice1[val];
-        $('option',list).remove();
-        $.each(choice,function(text,key)
-                {
-                    var option = new Option(key,text);
-                    list.append($(option));
-                }
-        );
-    }
-    var kB = $('#kieuBenh').val();
-    $('#kieuBenh').change(function()
+        var m = $('#m').val();
+        var n = $('#n').val();
+        var a1=1, a2=0,b1=0,b2=1;
+        var stack = [];
+        var r,q;
+        if(m < n)
+        {
+            var t = m;
+            m = n;
+            n = t;
+        }
+        var object = {
+            m:m,
+            n:n,
+            a1:a1,
+            a2:a2,
+            b1:b1,
+            b2:b2
+        };
+        stack.push(object);
+        do {
+            q = parseInt(m / n);console.log(r);
+            r = m % n;
+            m = n;
+            n = r;
+            var t = a2;
+            a2 = a1 - q*a2;
+            a1 = t;
+            t=b2;
+            b2 = b1 - q*b2;
+            b1 = t;
+            var object = {
+                m:m,
+                n:n,
+                a1:a1,
+                a2:a2,
+                b1:b1,
+                b2:b2
+            };
+            stack.push(object);
+        } while(r!=0);
+        console.log(stack);
+        $('#result').val(b1);
+        var data;
+        for(var i = 0;i<stack.length;i++)
+        {
+            var name = Object.keys(stack[i]);
+            data = "<tr>";
+            for(var j = 0;j<stack[i].length;j++)
             {
-                showList();
+                data += "<td>"+stack[i][j]+"</td>";
             }
-    );
-    function predict()
-    {
-        var str="";
-        var list = new Array();
-        $( "#trieuChung option:selected" ).each(function() {
-            str = $( this ).text() + " ";
-            list.push(str);
-            console.log(str);
-        });
-        console.log(list);
+            data +="</tr>";
+            console.log(data);
+            $('#resultTable').append(data);
+        }
+        console.log(data);
     }
-    showList();
 </script>
 </html>

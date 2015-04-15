@@ -12,6 +12,7 @@
 		<li><a href="">Contact</a></li>
 		<li><a href="">About</a></li>
 		<li><a href="">Tags</a></li>
+		<li><a href="">{{Auth::user()->username}}</a></li>
 	</ul>
 </div>
 @stop
