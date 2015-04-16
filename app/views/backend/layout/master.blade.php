@@ -165,6 +165,9 @@
                     <li>
                         <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
                     </li>
+                    <li>
+                        <a href="setting.html">Setting</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

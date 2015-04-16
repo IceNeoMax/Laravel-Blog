@@ -34,11 +34,16 @@ class PostController extends \BaseController {
 	public function create()
 	{
 
+        try{
         $result = Auth::check();
 	    if($result)
 		    return View::make('Post/createPost');
 	    else return Redirect::to('/login');
-	}
+	    }catch(Exception $ex){
+            //echo $ex->getTraceAsString();
+        }
+    }
+
 
 
 	/**
@@ -58,7 +63,7 @@ class PostController extends \BaseController {
         $post->author_id = Auth::id();
         $post->tags = $tags;
 		$result = $post->save();
-	}
+    }
 
 
 	/**

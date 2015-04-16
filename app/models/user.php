@@ -13,7 +13,7 @@ class User extends \Jenssegers\Mongodb\Model implements \Illuminate\Auth\UserInt
     }
     public static function addFieldToUser($user_id,$field)
     {
-        $success = User::where('_id',$user_id)->update(array($field));
+        $success = User::where('_id',$user_id)->update($field);
         return $success;
     }
     /*

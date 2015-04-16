@@ -44,13 +44,17 @@ Route::group(array('prefix'=>'api'),function(){
 // 	}
 // });
 // Route::group(['prefix' => $us'admin', 'before' => 'auth'], function () {
-Route::get('{username}/admin', array('before' => 'check_admin', 'as' => 'user.admin', 'uses' => 'HomeController@useradmin' ))->where(array( 'username' => '[a-zA-Z0-9-_]+'));
+//Route::get('{username}/admin', array('before' => 'check_admin', 'as' => 'user.admin', 'uses' => 'HomeController@useradmin' ))->where(array( 'username' => '[a-zA-Z0-9-_]+'));
 //Route::get('post/{post_id}/comments','PostController@getComment');
 //Route::post('post/{post_id}/comments','PostController@store');
-Route::get('posts/demo',function()
-{
-    return View::make('post/demoComment');
-});
+//Route::get('posts/demo',function()
+//{
+//    $field = array(
+//        "fb_id"=>123
+//    );
+//    $user = User::addFieldToUser("55291cd6f7839ee80f000029",$field);
+//    return View::make('post/demoComment',array("user"=>$user));
+//});
 Route::filter('check_admin', function() {
 	$username = Request::segment(1); // Lay thong tin user tren Param
 	if( !User::check_logged($username) ) {
