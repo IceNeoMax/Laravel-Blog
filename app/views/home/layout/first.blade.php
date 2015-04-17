@@ -1,10 +1,11 @@
 ﻿<html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="https://googledrive.com/host/0B8z8ereLRdjhVXZIeTBsdU4wNFU">
-		<link rel="stylesheet" type="text/css" href="https://googledrive.com/host/0B8z8ereLRdjhMHM2cmZPWE1IVW8">
-		<script src="smooth-scroll-master/dist/js/bind-polyfill.js"> </script>
-		<script src="smooth-scroll-master/dist/js/smooth-scroll.js"> </script>
+		  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		@yield('script')
+		<meta charset="utf-8"></meta>
 		<title>Concept4</title>
 		
 	</head>
@@ -30,7 +31,20 @@
 		<div id="main">
 			<div class="container">
 				<div class="row">
+					<div class="col-md-8">
+					<div class="post">
+						<div class="panel panel-default">
 					@yield('listing')
+						</div>
+					</div>
+					</div>
+
+					<div class="col-md-4 sidebar">
+						<div class="panel panel-info">
+							@yield('sidebar_post')
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>	

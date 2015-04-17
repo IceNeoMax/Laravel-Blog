@@ -20,6 +20,8 @@
                 $date = new DateTime($post['updated_at']);
                 $formatDate = $date->format($format);
                 $post["updated_time"] = $formatDate;
+                $comments = Comment::where('post_id',$post["_id"])->count();
+                $post["commentCount"] = $comments;
             }
             //print_r($posts[2]);
             return View::make('backend.post',array('posts'=>$posts));

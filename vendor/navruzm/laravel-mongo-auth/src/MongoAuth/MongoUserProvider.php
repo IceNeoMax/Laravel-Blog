@@ -114,7 +114,7 @@ class MongoUserProvider implements UserProviderInterface {
     public function retrieveByToken($identifier, $token)
     {
         $user = User::where('_id',$identifier)->where('remember_token',$token)->first();
-	return $user;
+        return $user;
     }
 
     /**

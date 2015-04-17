@@ -1,0 +1,4 @@
+<h1>
+    <?php echo Session::get('user_name'); ?>
+
+</h1>

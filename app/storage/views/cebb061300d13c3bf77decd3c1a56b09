@@ -1,0 +1,51 @@
+<?php $__env->startSection('listing'); ?>
+<div class="row">
+    <div class="col-lg-12">
+      	<h2>Posts &nbsp;<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> New Post</button></h2>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                  	<tr>
+                        <th><input type="checkbox"></th>
+                        <th>Tiêu đề</th>
+                        <th>Loại</th>
+                        <th>Người đăng</th>
+                        <!-- <th>Like</th>-->
+                        <th>Comment</th>
+                        <!-- <th>Lượt xem</th>-->
+                        <th>Ngày đăng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($posts as $post): ?>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>
+                        	<p><?php echo $post->title; ?></p>
+                        	<ul class="list-inline">
+                    			<li><a href='<?php echo URL::to('post/update/'.$post['_id']); ?>'>Chỉnh sửa</a></li>
+                    			<li><a href='<?php echo URL::to('post/'.$post['_id']); ?>'>Xem</a></li>
+                    			<li><a href=''>Chia sẻ</a></li>
+                    			<li><a href='<?php echo URL::to('post/delete/'.$post['_id']); ?>'>Xóa</a></li>
+                			</ul>
+                        </td>
+                        <?php if(isset($post["draft"])): ?>
+                        <td>Bản nháp</td>
+                        <?php else: ?>
+                        <td>Bản chính</td>
+                        <?php endif; ?>
+                        <td><span><?php echo $post->username; ?></span></td>
+                        <td><?php echo $post["commentCount"]; ?></td>
+                        <td><?php if(isset($post->updated_at)): ?>
+                          <?php echo $post->updated_time; ?>
+
+                        <?php endif; ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.layout.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

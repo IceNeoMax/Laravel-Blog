@@ -16,10 +16,12 @@ Route::post('/login','UserController@postLogin');
 Route::get('/register','UserController@getRegister');
 Route::post('/register','UserController@postRegister');
 Route::get('/logout','UserController@getLogout');
-//Route::get('/{username}',['as'=> 'user.page', 'uses' => 'HomeController@userpage']);
 Route::post('check-username','UserController@check_username');
 Route::post('check-email','UserController@check_email');
-Route::get('/','HomeController@getIndex');
+Route::get('/',function ()
+{
+    Redirect::to('/login');
+});
 Route::post('post/create','PostController@store');
 Route::get('post/index','PostController@index');
 //API for Post Controller
@@ -29,8 +31,7 @@ Route::resource('user','UserController');
 Route::get('user','UserController@index');
 Route::group(array('prefix'=>'{username}'),function()
 {
-    Route::get("/post","PostController@getIndex");
-    //Route::resource('post','PostController');
+    Route::get("/post/index","PostController@getIndex");
     Route::controller('backend', 'AdminController');
 });
 Route::group(array('prefix'=>'api'),function(){
@@ -44,17 +45,7 @@ Route::group(array('prefix'=>'api'),function(){
 // 	}
 // });
 // Route::group(['prefix' => $us'admin', 'before' => 'auth'], function () {
-//Route::get('{username}/admin', array('before' => 'check_admin', 'as' => 'user.admin', 'uses' => 'HomeController@useradmin' ))->where(array( 'username' => '[a-zA-Z0-9-_]+'));
-//Route::get('post/{post_id}/comments','PostController@getComment');
-//Route::post('post/{post_id}/comments','PostController@store');
-//Route::get('posts/demo',function()
-//{
-//    $field = array(
-//        "fb_id"=>123
-//    );
-//    $user = User::addFieldToUser("55291cd6f7839ee80f000029",$field);
-//    return View::make('post/demoComment',array("user"=>$user));
-//});
+Route::get('{username}/admin', array('before' => 'check_admin', 'as' => 'user.admin', 'uses' => 'HomeController@useradmin' ))->where(array( 'username' => '[a-zA-Z0-9-_]+'));
 Route::filter('check_admin', function() {
 	$username = Request::segment(1); // Lay thong tin user tren Param
 	if( !User::check_logged($username) ) {

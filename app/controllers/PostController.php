@@ -8,7 +8,15 @@ class PostController extends \BaseController {
 	public function index()
 	{
 
-        $posts = Post::all();//->toJson();
+        try
+        {
+
+        }
+        catch(Exception $ex)
+        {
+            
+        }
+        $posts = Post::all();
         $format="F j, Y, g:i a";
         foreach($posts as $post)
         {
@@ -20,8 +28,7 @@ class PostController extends \BaseController {
         }
         return View::make("home.index",
             [
-                'posts'=>$posts,
-                //'count'=>$count,
+                'posts'=>$posts
             ]);
 	}
 
@@ -34,16 +41,11 @@ class PostController extends \BaseController {
 	public function create()
 	{
 
-        try{
         $result = Auth::check();
 	    if($result)
 		    return View::make('Post/createPost');
 	    else return Redirect::to('/login');
-	    }catch(Exception $ex){
-            //echo $ex->getTraceAsString();
-        }
-    }
-
+	}
 
 
 	/**
@@ -63,7 +65,7 @@ class PostController extends \BaseController {
         $post->author_id = Auth::id();
         $post->tags = $tags;
 		$result = $post->save();
-    }
+	}
 
 
 	/**

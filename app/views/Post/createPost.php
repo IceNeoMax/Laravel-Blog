@@ -55,7 +55,7 @@
 <br>
 <br>
 
-<textarea id="summernote" name="content" class="form-control"></textarea>
+<textarea id="summernote" name="content" class="form-control">Hello Summernote</textarea>
 <br>
 <br>
 <?php echo Form::label("tags", "Separate tags by commas"); ?>
@@ -66,7 +66,7 @@
 
 <div style="text-align:center">
     <input class="btn btn-primary btn-lg" style="width: 300px; margin: 0 auto;" type="submit" value="Save">
-    <!--<input class="btn btn-primary btn-lg" style="width: 300px; margin: 0 auto;" type="submit" value="Draft">-->
+    <input class="btn btn-primary btn-lg" style="width: 300px; margin: 0 auto;" type="submit" value="Draft">
 </div>
 </div>
 </body>

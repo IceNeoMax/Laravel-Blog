@@ -1,0 +1,47 @@
+<?php echo $__env->make('home.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('listing'); ?>
+<?php foreach($posts as $post): ?>
+<div class="panel-heading">
+		<h3 class="panel-title"><h2><a href="<?php echo $post['_id']; ?>"><?php echo $post->title; ?></a></h2></h3>
+</div>
+<div>
+		<p>Author: &nbsp; <?php echo $post->username; ?> &nbsp; on <?php echo $post->create_time; ?></p>
+</div>
+<div class="panel-body">
+			<img src="https://googledrive.com/host/0B8z8ereLRdjhZ1lCSEdvVVRHV00" class="img-rounded" style=" margin-right:10px; width:200; height:150; float:left">
+            <p>
+                <?php if(strlen($post->content)<400): ?>
+                <?php echo $post->content; ?>
+
+                <?php else: ?>
+                <?php echo substr($post->content,0,400); ?>
+
+                <?php endif; ?>
+            </p>
+			<a href="<?php echo $post['_id']; ?>" style="">Read More...</a>
+</div>
+<div class="panel-footer">
+			<span>
+			<?php foreach($post['tags'] as $key => $tag): ?>
+			    <a href=""><?php echo $tag; ?> &nbsp;</a>
+			<?php endforeach; ?>
+			</span>
+</div>
+<?php endforeach; ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('sidebar_post'); ?>
+    <div class="panel-heading"> <h2>Bài mới</h2></div>
+        <div class="panel-body">
+            <a href="">Bài 1</a><br>
+            <img src="https://googledrive.com/host/0B8z8ereLRdjhZ1lCSEdvVVRHV00" class="img-rounded" style=" margin-right:10px; width:60px; height:60px; float:left">
+            Tính từ 
+            Có liên quan đến
+            relative evidence
+            bằng chứng liên quan
+            to give facts relative to the matter....
+            <a href="#" style="float:right; ">Read More...</a><hr>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('home.layout.first', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

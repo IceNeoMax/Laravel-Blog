@@ -153,9 +153,9 @@ class UserController extends \BaseController {
             if($check){
                 $username=$check['username'];
 		        $userId = $check['_id'];
-                Cookie::forever("api_token",$userId);
+                //Cookie::forever("api_token",$userId);
                 //return Redirect::route('user.page', array('username' => $username))->with('success', "Hi $username, Welcome back your Blog!");
-                return Redirect::intended();
+                return Redirect::to($username.'/backend');
             }
             else{
                 return Redirect::back()->with('success',"Tài khoản không chính xác. Đăng nhập thất bại");

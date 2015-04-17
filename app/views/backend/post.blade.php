@@ -11,9 +11,9 @@
                         <th>Tiêu đề</th>
                         <th>Loại</th>
                         <th>Người đăng</th>
-                        <th>Like</th>
+                        <!-- <th>Like</th>-->
                         <th>Comment</th>
-                        <th>Lượt xem</th>
+                        <!-- <th>Lượt xem</th>-->
                         <th>Ngày đăng</th>
                     </tr>
                 </thead>
@@ -36,9 +36,7 @@
                         <td>Bản chính</td>
                         @endif
                         <td><span>{{$post->username}}</span></td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
+                        <td>{{$post["commentCount"]}}</td>
                         <td>@if(isset($post->updated_at))
                           {{$post->updated_time}}
                         @endif</td>

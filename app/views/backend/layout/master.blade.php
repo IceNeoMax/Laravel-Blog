@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Dashboard {{Auth::user()->username}}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ URL::asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -47,7 +47,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" target="_blank" href={{ URL::to('/post/index') }}> <i class="navbar-brand"></i>Blog</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -157,17 +157,18 @@
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="{{ URL::asset('/backend/index') }}"><i class="fa fa-fw fa-table"></i> Post</a>
+                        <a href="{{ URL::to('/'.Auth::user()->username.'/backend/index') }}"><i class="fa fa-fw fa-table"></i> Post</a>
                     </li>
                     <li>
-                        <a href={{ URL::asset('/backend/comment') }}><i class="fa fa-fw fa-edit"></i> Comment</a>
+                        <a href={{ URL::to('/'.Auth::user()->username.'/backend/comment') }}><i class="fa fa-fw fa-edit"></i> Comment</a>
                     </li>
                     <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                        <a href={{ URL::to('/'.Auth::user()->username.'/backend/setting') }}><i class="fa fa-fw fa-edit"></i>Setting</a>
                     </li>
                     <li>
-                        <a href="setting.html">Setting</a>
+                         <a target="_blank" href={{ URL::to('/'.Auth::user()->username.'/post/index') }}><i class="fa fa-fw fa-edit"></i>Blog Page</a>
                     </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -180,5 +181,10 @@
 
     </div>
 </body>
+<script>
+    service.delete = function($type)
+    {
 
+    }
+</script>
 </html>

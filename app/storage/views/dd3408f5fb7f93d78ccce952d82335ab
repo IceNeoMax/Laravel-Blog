@@ -1,0 +1,9 @@
+<?php if(Session::has('success')): ?>
+  <h1>
+      <?php echo Session::get('success'); ?>
+
+  </h1>
+<?php endif; ?>
+<?php 
+dd(Session::get('user_name'));
+?>
