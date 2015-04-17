@@ -20,7 +20,7 @@ Route::post('check-username','UserController@check_username');
 Route::post('check-email','UserController@check_email');
 Route::get('/',function ()
 {
-    Redirect::to('/login');
+    return Redirect::to('/login');
 });
 Route::post('post/create','PostController@store');
 Route::get('post/index','PostController@index');
