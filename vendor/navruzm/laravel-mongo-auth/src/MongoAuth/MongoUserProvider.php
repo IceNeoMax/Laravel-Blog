@@ -5,6 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\UserProviderInterface;
 use Illuminate\Hashing\HasherInterface;
 use LMongo\Connection;
+use LMongo\Facades\LMongo;
 
 class MongoUserProvider implements UserProviderInterface {
 
@@ -126,7 +127,8 @@ class MongoUserProvider implements UserProviderInterface {
      */
     public function updateRememberToken(UserInterface $user, $token)
     {
-	    $userId = $user->getAuthIdentifier();
-	    //$acc = $this->retrieveByID($userId);
+        $id = $user->getAuthIdentifier();
+        //print_r($user);
+	    $user->setRememberToken($token);
     }
 }

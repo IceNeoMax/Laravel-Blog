@@ -151,10 +151,8 @@ class UserController extends \BaseController {
             $check = User::check_login($credentials['user_input'],$credentials['password']);          
             // dd(Session::get('user_name'));
             if($check){
-                $username=$check['username'];
+                $username=Auth::user()->username;
 		        $userId = $check['_id'];
-                //Cookie::forever("api_token",$userId);
-                //return Redirect::route('user.page', array('username' => $username))->with('success', "Hi $username, Welcome back your Blog!");
                 return Redirect::to($username.'/backend');
             }
             else{

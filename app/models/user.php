@@ -40,15 +40,15 @@ class User extends \Jenssegers\Mongodb\Model implements \Illuminate\Auth\UserInt
     {
         //$result = User::where('username',$user_input)->where('password',$password)->first();	
         $data = array('email'=>$user_input,'password'=>$password);
-        $result=Auth::attempt($data);
+        $result=Auth::attempt($data,true);
         if(!$result)
         {
             return false;
         }
         else{
             //          //Luu session
-            Session::put('user_id',$result['_id']);
-            Session::put('user_name',$result['username']);
+//            Session::put('user_id',$result['_id']);
+//            Session::put('user_name',$result['username']);
             return $result;
         }
     }
@@ -98,6 +98,7 @@ class User extends \Jenssegers\Mongodb\Model implements \Illuminate\Auth\UserInt
     public function getRememberToken()
     {
         // TODO: Implement getRememberToken() method.
+
         return $this->remember_token;
 
     }
@@ -111,6 +112,8 @@ class User extends \Jenssegers\Mongodb\Model implements \Illuminate\Auth\UserInt
     {
         // TODO: Implement setRememberToken() method.
         $this->remember_token = $value;
+        $this->save();
+        //var_dump($this);
     }
     /**
      * Get the column name for the "remember me" token.
