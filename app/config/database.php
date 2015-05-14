@@ -75,12 +75,15 @@ return array(
 		),
         'mongodb'=>array(
             'driver'   => 'mongodb',
-            'host'     => 'ds059661.mongolab.com',
-            'port'     =>  59661,
-            'username' => 'admin',
+            //'host'     => 'ds059661.mongolab.com',
+            'host'	   => 'localhost',
+			//'port'     =>  59661,
+			'port'		=> '27017',
+			'username' => 'admin',
             'password' => 'admin',
-            'database' => 'medusa'
-        ),
+            //'database' => 'medusa'
+			'database' 	=> 'meduza'
+		),
 		'sqlsrv' => array(
 			'driver'   => 'sqlsrv',
 			'host'     => 'localhost',

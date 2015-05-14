@@ -53,6 +53,10 @@
                 if(isset($user['fb_img'])) $comment['fb_img'] = $user['fb_img'];
             }
 			return View::make('backend.comment',array('comment_data'=>$comment_data));
-		}
+        }
+        public function getSetting()
+        {
+            return View::make('backend.settings');
+        }
 	}
 ?>

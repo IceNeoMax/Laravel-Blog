@@ -15,22 +15,22 @@
 		<p>Author: &nbsp; <?php echo $post->username; ?> &nbsp; on <?php echo $post->create_time; ?></p>
 </div>
 <div class="panel-body">
-<img src="https://googledrive.com/host/0B8z8ereLRdjhZ1lCSEdvVVRHV00" class="img-rounded" style=" margin-right:10px; width:270; height:200; float:left">
+<img src="<?php echo URL::asset('assets/img/post_cover.jpg'); ?>" class="img-rounded" style=" margin-right:10px; width:270; height:200; float:left">
 <?php echo $post->content; ?>
 
 </div>
 <div ng-app="commentApp" ng-controller="mainController">
 <b>Comment List:</b><br>
     <div ng-repeat = "comment in comments">
-                        <img src="https://googledrive.com/host/0B8z8ereLRdjhZ1lCSEdvVVRHV00" class="img-circle" style="float:left; margin-right:10px; width:75; height:75">
+                        <img class="img-circle" src="https://graph.facebook.com/picture?type=large" style="float:left; margin-right:10px; width:75; height:75">
                         <b><% comment.username %>:</b><br><% comment.content %>
                         
                         <a style="float:right;" href="#" ng-hide="!comment.owner" ng-click="deleteComment(comment._id,$index);$event.preventDefault(); $event.stopPropagation();">Delete</a>
                         <br>
                         <hr>
      </div>
-
-<form  ng-submit = "submitComment()">
+<?php if(Auth::check()): ?>
+<form ng-submit = "submitComment()">
     <div class="form-group" >
         <label for="content" class="control-label">Comment:</label>
         <textarea name = "content" ng-model = "commentData.content" id="comment" class="form-control" rows="4" placeholder="Write a comment"></textarea>
@@ -39,6 +39,12 @@
         .<button type="submit" class="btn btn-primary btn-lg">Post</button>
     </div>
 </form>
+<?php else: ?>
+  <div class="form-group" >
+        <label for="content" class="control-label"></label>
+        <a href="<?php echo URL::to('/login'); ?>">Login to comment</a>
+    </div>
+<?php endif; ?>
 
 </div>
 <?php $__env->stopSection(); ?>
@@ -53,5 +59,6 @@
             bằng chứng liên quan
             to give facts relative to the matter....
             <a href="#" style="float:right; ">Read More...</a><hr>
+            </div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('home.layout.first', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

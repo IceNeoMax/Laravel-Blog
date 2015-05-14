@@ -19,11 +19,14 @@ return array(
     'connections' => array(
 
         'default' => array(
-            'host'     => 'ds059661.mongolab.com',
-            'port'     =>  59661,
-            'username' => 'admin',
+            //'host'     => 'ds059661.mongolab.com',
+            'host'	   => 'localhost',
+			//'port'     =>  59661,
+            'port'		=> '27017',
+			'username' => 'admin',
             'password' => 'admin',
-            'database' => 'medusa'
+			'database' 	=> 'meduza'
+            //'database' => 'medusa'
         ),
     ),
 );

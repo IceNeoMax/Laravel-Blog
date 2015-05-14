@@ -24,7 +24,7 @@ class Post extends \Jenssegers\Mongodb\Model
     /*
      * Find post by specific tag
      * @param string $tag
-     * @return Post
+     * @return post
      */
     public static function getPostById($id)
     {
@@ -56,7 +56,7 @@ class Post extends \Jenssegers\Mongodb\Model
 //            'comment_id'=>1,
 //            'comment'=>'Imagination',
 //        ));
-//        $post = Post::where('post_id',$post_id)->update(array('comments'=>$comments));
+//        $post = post::where('post_id',$post_id)->update(array('comments'=>$comments));
 //    }
     /*
      * Count number of comments in the specific post
@@ -66,5 +66,10 @@ class Post extends \Jenssegers\Mongodb\Model
         $post = Post::where('_id',$post_id)->get(array('comments'));
         $count = count($post);
         return $count;
+    }
+    public static function getAllVisiblePost()
+    {
+        $posts = Post::where('type',"Public")->get();
+        return $posts;
     }
 }

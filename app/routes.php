@@ -24,15 +24,18 @@ Route::get('/',function ()
 });
 Route::post('post/create','PostController@store');
 Route::get('post/index','PostController@index');
-//API for Post Controller
+//API for post Controller
 Route::resource('post','PostController');
 //API for User Controller
+Route::controller('user','UserController');
 Route::resource('user','UserController');
 Route::get('user','UserController@index');
 Route::group(array('prefix'=>'{username}'),function()
 {
+    Route::get("/","PostController@getIndex");
     Route::get("/post/index","PostController@getIndex");
     Route::controller('backend', 'AdminController');
+    Route::resource('post','PostController');
 });
 Route::group(array('prefix'=>'api'),function(){
     Route::resource('comments','CommentController');

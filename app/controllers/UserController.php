@@ -183,7 +183,8 @@ class UserController extends \BaseController {
             //$credentials['password'] = Hash::make($credentials['password']);
             $user->password=Hash::make($credentials['password']);
             $user->email=$credentials['email'];
-	    $user->remember_token ="";
+	        $user->remember_token ="";
+            $user->avatar_link ="";
             $user->save();
             return Redirect::to('/login')->with('success', 'User is registered!');
         } else
@@ -214,5 +215,27 @@ class UserController extends \BaseController {
     public function getLogout(){
         User::logout();
         return Redirect::to('/');
+    }
+
+    public function postSyncfb(){
+        $fbid=array(
+            "fbid"=>Input::get('fbid'),
+            "avatar_link"=>"https://graph.facebook.com/".Input::get('fbid')."picture?type=large"
+        );
+        $userid=Auth::user()->_id;
+        $check=User::addFieldToUser($userid,$fbid);
+        echo ($check) ? true : false;
+        return Response::json($fbid);
+    }
+	  public function postLoginwithfb(){
+        if (Auth::check()){
+            return Response::json(Auth::user()->username);
+        }else{
+            $fbid=Input::get('fbid');
+            $user=User::where('fbid',$fbid)->first();
+            Auth::login($user);
+            echo Auth::user()->username;
+            return Response::json(Auth::user()->username);
+        }
     }
 }

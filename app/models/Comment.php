@@ -31,6 +31,7 @@ class Comment extends \Jenssegers\Mongodb\Model
             $user_id = $comment['user_id'];
             $user = User::getUserById($user_id);
             $comment['username'] = $user['username'];
+            $comment['avatar_link']=$user['avatar_link'];
             $comment['email'] = $user['email'];
             $post = Post::getPostById($comment["post_id"]);
             $comment['title'] = $post['title'];

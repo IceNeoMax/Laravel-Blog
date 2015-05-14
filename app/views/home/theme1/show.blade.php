@@ -21,14 +21,14 @@
 <div ng-app="commentApp" ng-controller="mainController">
 <b>Comment List:</b><br>
     <div ng-repeat = "comment in comments">
-                        <img class="img-circle" src="https://graph.facebook.com/picture?type=large" style="float:left; margin-right:10px; width:75; height:75">
+                        <img src="https://graph.facebook.com/{{Auth::user()->fbid}}/picture?type=large" style="float:left; margin-right:10px; width:75; height:75">
                         <b><% comment.username %>:</b><br><% comment.content %>
                         
                         <a style="float:right;" href="#" ng-hide="!comment.owner" ng-click="deleteComment(comment._id,$index);$event.preventDefault(); $event.stopPropagation();">Delete</a>
                         <br>
                         <hr>
      </div>
-@if(Auth::check())
+@if(isset(Auth::user()->username))
 <form ng-submit = "submitComment()">
     <div class="form-group" >
         <label for="content" class="control-label">Comment:</label>
@@ -58,5 +58,4 @@
             bằng chứng liên quan
             to give facts relative to the matter....
             <a href="#" style="float:right; ">Read More...</a><hr>
-            </div>
 @stop

@@ -43,7 +43,8 @@
         });
     </script>
 </head>
-<body style="background-image: url('http://www.splitshire.com/wp-content/uploads/2014/02/SplitShire_blur10.jpg')">
+<body>
+<!--style="background-image: url('http://www.splitshire.com/wp-content/uploads/2014/02/SplitShire_blur10.jpg')"-->
 <div class="container" style="background-color: #ffffff">
     <?php echo Form::open(array(
         'url' => 'post/create',
@@ -55,7 +56,7 @@
 <br>
 <br>
 
-<textarea id="summernote" name="content" class="form-control">Hello Summernote</textarea>
+<textarea id="summernote" name="content" class="form-control"></textarea>
 <br>
 <br>
 <?php echo Form::label("tags", "Separate tags by commas"); ?>
@@ -65,8 +66,8 @@
 <br>
 
 <div style="text-align:center">
-    <input class="btn btn-primary btn-lg" style="width: 300px; margin: 0 auto;" type="submit" value="Save">
-    <input class="btn btn-primary btn-lg" style="width: 300px; margin: 0 auto;" type="submit" value="Draft">
+    <input name="post" class="btn btn-primary btn-lg" style="width: 300px; margin: 0 auto;" type="submit" value="Public">
+    <input name="post" class="btn btn-primary btn-lg" style="width: 300px; margin: 0 auto;" type="submit" value="Draft">
 </div>
 </div>
 </body>
