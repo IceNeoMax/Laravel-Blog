@@ -22,7 +22,7 @@
 <div ng-app="commentApp" ng-controller="mainController">
 <b>Comment List:</b><br>
     <div ng-repeat = "comment in comments">
-                        <img class="img-circle" src="https://graph.facebook.com/picture?type=large" style="float:left; margin-right:10px; width:75; height:75">
+                        <img class="img-circle" src="<% comment.avatar_link %>" style="float:left; margin-right:10px; width:75; height:75">
                         <b><% comment.username %>:</b><br><% comment.content %>
                         
                         <a style="float:right;" href="#" ng-hide="!comment.owner" ng-click="deleteComment(comment._id,$index);$event.preventDefault(); $event.stopPropagation();">Delete</a>

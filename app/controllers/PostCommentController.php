@@ -18,6 +18,8 @@ class PostCommentController extends \BaseController {
         foreach($comments as $comment)
         {
             if($comment["user_id"]==$id) $comment["owner"]=true;else $comment["owner"]=false;
+            $user = User::getUserById($comment["user_id"]);
+            $comment["avatar_link"] = $user["avatar_link"];
         }
 //        if($id==null) {
 ////            return Response::json($comments,array(
