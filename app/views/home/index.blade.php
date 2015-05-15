@@ -4,7 +4,7 @@
 @section('listing')
 @foreach($posts as $post)
 <div class="panel-heading">
-		<h3 class="panel-title"><h2><a href="{{$post['_id']}}">{{$post->title}}</a></h2></h3>
+		<h3 class="panel-title"><h2><a href="{{URL::to('post/'.$post['_id'])}}">{{$post->title}}</a></h2></h3>
 </div>
 <div>
 		<p>Author: &nbsp; {{$post->username}} &nbsp; on {{$post->create_time}}</p>

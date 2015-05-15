@@ -220,7 +220,7 @@ class UserController extends \BaseController {
     public function postSyncfb(){
         $fbid=array(
             "fbid"=>Input::get('fbid'),
-            "avatar_link"=>"https://graph.facebook.com/".Input::get('fbid')."picture?type=large"
+            "avatar_link"=>"https://graph.facebook.com/".Input::get('fbid')."/picture?type=large"
         );
         $userid=Auth::user()->_id;
         $check=User::addFieldToUser($userid,$fbid);
