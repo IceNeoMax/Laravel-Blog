@@ -32,6 +32,7 @@ angular.module('mainCtrl',[])
                 //    $scope.comments = getData;
                 //    $scope.loading = false;
                 //})
+
                 console.log(data);
                 $scope.comments.push(data);
             }).error(function(data){

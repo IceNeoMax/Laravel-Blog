@@ -74,6 +74,7 @@ class PostCommentController extends \BaseController {
             $comment->content = $content;
             $comment->user_id = Auth::id();
             $comment->post_id=$post_id;
+            $comment->avatar_link = Auth::user()->avatar_link;
             $comment->save();
             $user_id = $comment['user_id'];
             $user = User::getUserById($user_id);

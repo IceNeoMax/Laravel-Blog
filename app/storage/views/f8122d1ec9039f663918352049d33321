@@ -48,7 +48,8 @@
               if(data) {
                 //alert(data);
                 var href = window.location.href;
-                window.location="http://localhost/Laravel-Blog/public/"+data+'/backend';
+                var configHref = href.replace('login',data+'/backend')
+                window.location=configHref;
               }
               else alert("Tài khoản FB chưa đc Sync");
             }

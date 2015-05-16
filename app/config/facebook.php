@@ -7,5 +7,6 @@
  */
 return array(
     'appId' => '379361542266786',
-    'secret' => 'f3cd1c4603c3df98e6c09fef4dc93af1'
+    'secret' => 'f3cd1c4603c3df98e6c09fef4dc93af1',
+    'app_scope'=>array()
 );

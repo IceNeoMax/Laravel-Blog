@@ -1,5 +1,5 @@
 <?php
-
+use Facebook\FacebookSession;
 class CommentController extends \BaseController {
 
 	/**
