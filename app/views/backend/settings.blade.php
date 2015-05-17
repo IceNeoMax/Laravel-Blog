@@ -2,13 +2,25 @@
 @section('listing')
 <div id="fb-root"></div>
 <script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '379361542266786',
-            xfbml      : true,
-            version    : 'v2.3'
-        });
-    };
+    var appId = null;
+      $.ajax(
+      {
+        type:"GET",
+        url:"{{URL::asset('login/fb/appId')}}",
+        success: function(data)
+        {
+            appId = data;
+        }
+      });
+
+       window.fbAsyncInit = function() {
+              FB.init({
+                  appId      : appId,
+                  xfbml      : true,
+                  version    : 'v2.3',
+                  cookie     : true
+              });
+          };
     (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {return;}
