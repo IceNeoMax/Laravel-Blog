@@ -84,8 +84,7 @@
     <h2>Settings</h2>
 </div>
 <div align="center">
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" size="xlarge">
-</fb:login-button>
+<div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="true"></div>
 </div>
 <div id="status">
 </div>

@@ -6,7 +6,7 @@
  * Time: 11:54 AM
  */
 return array(
-    'appId' => '379361542266786',
-    'secret' => 'f3cd1c4603c3df98e6c09fef4dc93af1',
-    'app_scope'=>array()
+    'app_id' => '379361542266786',
+    'app_secret' => 'f3cd1c4603c3df98e6c09fef4dc93af1',
+    'app_scope'=>array('public_profile','email')
 );

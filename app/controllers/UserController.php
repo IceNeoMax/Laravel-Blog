@@ -228,14 +228,19 @@ class UserController extends \BaseController {
         return Response::json($fbid);
     }
 	  public function postLoginwithfb(){
-        if (Auth::check()){
+        if (Auth::check()) {
             return Response::json(Auth::user()->username);
-        }else{
-            $fbid=Input::get('fbid');
-            $user=User::where('fbid',$fbid)->first();
-            Auth::login($user);
-            echo Auth::user()->username;
-            return Response::json(Auth::user()->username);
+//        }else{
+//            $fbid=Input::get('fbid');
+//            $user=User::where('fbid',$fbid)->first();
+//            Auth::login($user);
+//            echo Auth::user()->username;
+//            return Response::json(Auth::user()->username);
+//        }
+        }
+        else{
+            $response = Input::get('response');
+
         }
     }
 }

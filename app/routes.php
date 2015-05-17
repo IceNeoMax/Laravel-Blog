@@ -63,4 +63,5 @@ Route::controller('/post','PostController');
 //App::missing(function($exception) {
 //    return View::make('index');
 //});
-
+Route::get('login/fb','LoginFacebookController@login');
+Route::get('login/fb/appId','LoginFacebookController@callback');

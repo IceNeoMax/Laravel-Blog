@@ -34,7 +34,6 @@
                         ['table', ['table']],
                         ['insert', ['link', 'picture', 'hr']],
                         ['view', ['fullscreen', 'codeview']],
-                        ['help', ['help']],
                         ['group', [ 'video' ]]
                     ],
                     onImageUpload: function(files) {

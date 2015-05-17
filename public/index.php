@@ -5,7 +5,7 @@
  * @package  Laravel
  * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
-
+session_start();
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader

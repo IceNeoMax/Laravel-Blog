@@ -505,6 +505,7 @@ return array(
     'LMongo\\LMongoServiceProvider' => $vendorDir . '/navruzm/lmongo/src/LMongo/LMongoServiceProvider.php',
     'LMongo\\Query\\Builder' => $vendorDir . '/navruzm/lmongo/src/LMongo/Query/Builder.php',
     'LMongo\\Query\\Cursor' => $vendorDir . '/navruzm/lmongo/src/LMongo/Query/Cursor.php',
+    'LoginFacebookController' => $baseDir . '/app/controllers/LoginFacebookController.php',
     'Math_BigInteger' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Math/BigInteger.php',
     'MongoAuth\\MongoAuthManager' => $vendorDir . '/navruzm/laravel-mongo-auth/src/MongoAuth/MongoAuthManager.php',
     'MongoAuth\\MongoAuthServiceProvider' => $vendorDir . '/navruzm/laravel-mongo-auth/src/MongoAuth/MongoAuthServiceProvider.php',

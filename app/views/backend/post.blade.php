@@ -1,7 +1,31 @@
 @extends('backend.layout.master')
 @section('listing')
 <script>
-    console.log();
+     var appId = null;
+     $.ajax(
+          {
+            type:"GET",
+            url:"{{URL::asset('login/fb/appId')}}",
+            success: function(data)
+            {
+                appId = data;
+            }
+          });
+     window.fbAsyncInit = function() {
+                  FB.init({
+                      appId      : appId,
+                      xfbml      : true,
+                      version    : 'v2.3',
+                      cookie     : true
+                  });
+              };
+              (function(d, s, id){
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (d.getElementById(id)) {return;}
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/en_US/sdk.js";
+                  fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));
 </script>
 <div class="row">
     <div class="col-lg-12">
@@ -30,8 +54,8 @@
                         	<ul class="list-inline">
                     			<li><a target="_blank" href='{{URL::to('post/update/'.$post['_id'])}}'>Chỉnh sửa</a></li>
                     			<li><a target="_blank" href='{{URL::to('post/'.$post['_id'])}}'>Xem</a></li>
-                    			<li><a target="_blank" href=''>Chia sẻ</a></li>
-                    			<li><a id="delete" href='' onclick="Event.preventDefault();deletePost('{{$post['_id']}}')">Xóa</a></li>
+                    			<li><a href='#' onclick="sharePostToFacebook('{{$post['_id']}}')" >Chia sẻ</a></li>
+                    			<li><a id="delete" href='#' onclick="deletePost('{{$post['_id']}}')">Xóa</a></li>
                 			</ul>
                         </td>
                         @if($post["type"]=="Draft")
@@ -56,17 +80,33 @@
     {
         $.ajax(
         {
-            url:"{{URL::to('post/delete/')}}/id",
-            type:"GET",
+            url:"{{URL::to('post/')}}/"+id,
+            type:"DELETE",
             success: function(data)
             {
-                if(data.success==1)
-                {
-                    var name = "tr"+id;
-                    $(name).remove();
-                }
+                    var name = "#tr"+id;
+                    console.log(name);
+                    $(name).fadeOut("normal", function() {
+                            $(this).remove();
+                        });
             }
         });
+    }
+    function sharePostToFacebook(id)
+    {
+        FB.ui({
+            method: 'share',
+            href: '{{URL::to('post/')}}/'+id
+        }, function(response){
+            console.log(response);
+            if(response.error_code)
+            {
+                alert("Share khong thanh cong");
+            }
+            else{
+                alert("Share thanh cong");
+            }
+     });
     }
 </script>
 @stop

@@ -10,6 +10,6 @@ class Resource extends \BaseController
     public function upload()
     {
         $file = Request::file('file');
-        return Response::json(array($file));
+
     }
 }
