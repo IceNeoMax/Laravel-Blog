@@ -1,5 +1,4 @@
 <?php
-
 class LoginFacebookController extends \BaseController {
 
 	/**
@@ -7,14 +6,8 @@ class LoginFacebookController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-  
     public function callback()
     {
-//        if($this->fb->generateSessionFromRedirect())
-//        {
-//            echo "Session login";
-//        }
-//        dd($this->fb->getGraph());
-        return Config::get('facebook.app_id');
+        return Response::json(Config::get('facebook.app_id'));
     }
 }

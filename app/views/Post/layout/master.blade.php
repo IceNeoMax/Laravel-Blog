@@ -11,6 +11,7 @@
     <!-- include summernote css/js-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.6.1/summernote.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.6.1/summernote.min.js"></script>
+    <script src="{{URL::asset('assets/js')}}/summernote-ext-video.js"></script >
     <script type="text/javascript">
         $(document).ready(function () {
             $('#summernote').summernote(

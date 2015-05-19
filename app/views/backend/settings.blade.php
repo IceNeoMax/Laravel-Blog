@@ -97,9 +97,35 @@
 <div align="center">
     <h2>Settings</h2>
 </div>
-<div align="center">
+<h3>Connected with Facebook</h3>
+<div align="left">
 <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="true"></div>
 </div>
 <div id="status">
 </div>
+<h3>Cover</h3>
+
+		<input type="file" name="image" id="form-upload"/>
+		<button id="btn-upload">Upload</button>
+	<p id="#message"></p>
+	<script type="text/javascript">
+		$("#btn-upload").on('click',function(){
+			$("#message").html('');
+
+			var datas = $(':file').prop('files')[0];
+			var data =new FormData();
+			data.append("image",datas);
+			var url = "{{URL::asset('user/changecover')}}";
+			$.ajax({
+				url: url,
+				type: "POST",
+				data: data,
+				cache: false,
+				processData:false,
+				success: function(data){
+					$("#message").html(data);
+				}
+			});
+		});
+	</script>
 @endsection

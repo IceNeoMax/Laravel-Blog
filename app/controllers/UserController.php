@@ -185,6 +185,7 @@ class UserController extends \BaseController {
             $user->email=$credentials['email'];
 	        $user->remember_token ="";
             $user->avatar_link ="";
+            $user->cover_link = "";
             $user->save();
             return Redirect::to('/login')->with('success', 'User is registered!');
         } else
@@ -242,5 +243,12 @@ class UserController extends \BaseController {
             $response = Input::get('response');
 
         }
-    }
+      }
+      public function postChangecover()
+      {
+          $file = Input::file("image");
+          $r = new ResourceController();
+         // $response = $r->uploadImage($file);
+          return Response::json(Input::all());
+      }
 }
